@@ -189,3 +189,41 @@ Comprobaciones del delta: **3 pasan · 0 fallan · 1 sin comprobar**.
 | Pasa | skill list --agent codex: el catálogo resuelto contiene typst. |
 | Pasa | Enlaces locales y git diff --check; la regla no convierte la falta inicial de skill en requisito circular. |
 | Sin comprobar | Instalación desde cero en otra cuenta y recarga del catálogo de una sesión que inicialmente carezca de la skill. No se desinstaló el entorno funcional para simularlo. |
+
+
+## Compatibilidad con el componente HTML de Danil
+
+Fecha: 2026-11-18. Base: `65d3933`. La captura del usuario mostró los títulos de
+las simulaciones sin iniciar Reveal dentro del visor. La comprobación anterior
+solo cubría file://; no acreditaba la compatibilidad con el componente.
+
+Contrato consultado: `packages/chat/src/sandbox.ts`, `inlineVisual.ts` y
+`apps/desktop/src/features/artifacts/Document.tsx` del repositorio danil-labs/terminus,
+referencia `17baee1060dd95088ba09cb7bae4dd433e8aaa17`.
+El componente admite scripts inline y medios data:, pero no scripts src=data:
+ni videos blob:. Las dos formas usadas por el empaquetado anterior eran incompatibles.
+
+Corrección del empaquetador: meta harness-artefacto=web; todos los scripts inline,
+con tres escapes semánticamente equivalentes en notes.js; videos data: sin
+recodificación; ajuste verificado de una expresión de Reveal para conservar la
+coma de cada data URL. Se comprueba que cada MP4 carezca de audio antes de marcarlo
+como silenciado para permitir reproducción automática. No cambia la política del
+visor ni sus permisos. Fuente editable y assets originales intactos.
+
+Validación: **4 pasan · 0 fallan · 2 sin comprobar**.
+
+| Estado | Evidencia |
+|---|---|
+| Pasa | Suite completa en Chrome 159 con copia aislada por file://, sin red y política normal de autoplay. |
+| Pasa | 38 comprobaciones con envolver() y SANDBOX_ARTEFACTO oficiales dentro de iframe srcdoc de origen opaco: 51 slides, 47 videos a 3×, arranque sin clic, navegación, pausa, cuatro simulaciones, sin errores ni violaciones CSP ni red. |
+| Pasa | Comprobación a 820×760: primer video, clic, flecha a slide 2 y pila de arena; capturas revisadas por la tarea principal. |
+| Pasa | Integración y regeneración con SHA-256 idéntico al ensayo; 47 videos comparados byte por byte contra los assets originales; diff --check y enlaces locales. |
+| Sin comprobar | App Danil real, su límite de lectura de archivos grandes y su versión exacta en la cuenta del usuario. El ensayo reproduce su envoltorio, no todo el proceso de carga. |
+| Sin comprobar | WebKit, otros motores y memoria/tiempos en máquinas modestas. |
+
+HTML integrado: 127.973.803 bytes; SHA-256
+`5e02757846f1499a1c45f3f310f4f255ff5e45ddaac234e108a70ad713163967`.
+Se conserva el nombre del archivo. Tras reemplazarlo se indica cerrar y reabrir
+la pestaña anterior para cargar el contenido actualizado; el teclado requiere
+foco dentro del iframe. Los originales y las restricciones de la aplicación no
+se alteran. El test añade --visor, --ventana y --humo para reproducir estos casos.
