@@ -240,9 +240,13 @@ instala automáticamente al leer una skill.
 ## Presentación de consulta
 
 La presentación *Entre el orden y el caos* se conserva en `presentacion/` para
-quien quiera explorar sus ejemplos. El procedimiento vigente para abrirla está
-en el [README](README.md#presentación-de-consulta-opcional).
-Conserva `presentacion/entre-el-orden-y-el-caos_assets/` y sus rutas: contiene los
-videos y recursos originales. Las animaciones se reproducen a 3 veces la
-velocidad. Las cuatro simulaciones se activan en su diapositiva; el PDF es estático.
-No afirmes que las simulaciones numéricas del kit se ejecutaron sin comprobarlo.
+quien quiera explorar sus ejemplos. El [README](README.md#presentación-de-consulta-opcional)
+explica cómo generar y abrir el HTML autocontenido, sin servidor ni red.
+La fuente editable es `presentacion/entre-el-orden-y-el-caos.fuente.html`;
+`python3 simulaciones/empaquetar_presentacion.py` genera el archivo de entrega
+`presentacion/entre-el-orden-y-el-caos.html`, que queda ignorado por Git por su tamaño.
+Conserva `presentacion/entre-el-orden-y-el-caos_assets/` y sus rutas: se usan para
+regenerar la entrega. No edites a mano el archivo generado ni elimines los originales.
+Las animaciones se reproducen a 3×; las cuatro simulaciones se activan en su
+diapositiva. El PDF es estático. No afirmes que las simulaciones numéricas del kit
+se ejecutaron sin comprobarlo; la prueba del navegador solo cubre la presentación.

@@ -211,22 +211,36 @@ python agent-creator/scripts/validate_agent.py --root . --strict
 
 ## Presentación de consulta (opcional)
 
-Puedes consultar *Entre el orden y el caos* para explorar los ejemplos incluidos.
-La versión actual usa archivos de `presentacion/entre-el-orden-y-el-caos_assets/`:
-conserva esa carpeta junto al HTML. Para abrirla, desde la raíz ejecuta:
+*Entre el orden y el caos* se entrega como **un solo HTML autocontenido**:
+`presentacion/entre-el-orden-y-el-caos.html`. Abre el archivo generado con doble
+clic en tu navegador; no necesita servidor Python, conexión a internet ni una
+carpeta de recursos al lado. Puedes compartir ese archivo por separado.
+
+Conserva 51 diapositivas, 47 videos originales a 3× y cuatro simulaciones:
+Mandelbrot, autómatas celulares, pila de arena y bosque con incendios. Avanza y
+retrocede con las flechas; la barra espaciadora pausa o reanuda un video. Las
+simulaciones se activan al llegar a su diapositiva y tienen sus propios controles.
+Se comprobó en Chrome 159, con una copia aislada abierta por `file://` y sin red.
+Otros navegadores y equipos de pocos recursos quedan sin comprobar.
+
+**Si clonaste el repositorio**, genera el archivo una vez desde la raíz:
 
 ```sh
-python3 -m http.server 8765 --bind 127.0.0.1
+python3 simulaciones/empaquetar_presentacion.py
 ```
 
-Abre [la presentación en tu navegador](http://127.0.0.1:8765/presentacion/entre-el-orden-y-el-caos.html).
-Avanza y retrocede con las flechas. Las simulaciones de Mandelbrot, autómatas,
-pila de arena y bosque se activan al llegar a su diapositiva. Las animaciones
-se reproducen a 3×. Para detener el servidor, presiona Ctrl+C en la terminal.
-El enlace local solo funciona en tu computadora.
+El empaquetador solo usa la biblioteca estándar de Python. El HTML generado pesa
+122,1 MiB y queda fuera de Git porque supera el [límite de 100 MiB de GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github).
+Se versionan la [fuente editable](presentacion/entre-el-orden-y-el-caos.fuente.html),
+los recursos originales y el [empaquetador](simulaciones/empaquetar_presentacion.py).
+Edita la fuente y regenera el archivo; no edites a mano el HTML empaquetado.
+Quien reciba el HTML ya generado no necesita Python. Una publicación descargable
+para quienes solo visiten GitHub queda pendiente; no se ha creado una Release.
 
 También está la [versión PDF estática](presentacion/entre-el-orden-y-el-caos-estatica.pdf),
-sin animaciones ni simulaciones interactivas. Consulta los [créditos de imágenes](presentacion/CREDITOS.md).
+sin animaciones ni simulaciones interactivas. Consulta los [créditos de imágenes](presentacion/CREDITOS.md),
+incluidos también dentro del HTML independiente. La [prueba de navegador](simulaciones/probar_presentacion.mjs)
+comprueba videos, navegación, controles y ausencia de peticiones externas.
 
 ## Referencias de los temas de ejemplo
 
