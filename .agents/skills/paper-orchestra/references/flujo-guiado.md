@@ -79,6 +79,12 @@ No quites límites ni cambies de proveedor para eludir un rechazo.
 
 ## Registro y reporte
 
+Entrega por defecto los resultados en el chat: visualización interactiva para
+prototipos y vistas previas para imágenes y documentos. Solo cambia el lugar
+cuando la persona lo pida explícitamente. El coordinador incluye este requisito
+en los encargos y conserva las fuentes reproducibles; una ruta o un enlace a un
+servidor no sustituye la presentación del resultado. Nunca versiones `.local/`.
+
 El coordinador guarda en trabajo/encargo.md: pregunta, etapa, tipo de estudio,
 audiencia, insumos autorizados, supuestos, criterio de éxito, presupuesto,
 decisiones humanas y siguiente paso. Incluye tabla de responsable, tarea,
