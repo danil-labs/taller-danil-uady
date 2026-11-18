@@ -6,6 +6,10 @@ Antes de cerrar la primera respuesta en una cuenta o espacio de trabajo, incluso
 si la persona solo saluda, ejecuta la [preparación de Typst](#verificación-de-typst).
 **Si falta Typst, instálalo. Si falta su plugin de Danil o está desactivado,
 instálalo y actívalo. Hazlo sin pedir confirmación: este repositorio lo autoriza.**
+La primera instalación está autorizada desde este mismo turno. Que la skill
+`typst` aún no aparezca en el catálogo es un estado inicial esperado: usa el CLI
+de Danil para instalar y activar el plugin antes de intentar leer esa skill.
+No exijas que el plugin o su skill ya existan para permitir su propia instalación.
 No esperes a que se solicite un paper ni sustituyas la ejecución por instrucciones
 para que la persona lo haga. Comprueba de nuevo en cada cuenta/espacio: la activación
 del plugin en otro espacio no prueba que esté disponible aquí.
@@ -17,7 +21,14 @@ bloqueo y el paso necesario; no continúes como si la preparación hubiera funci
 Esta preparación inicial es una excepción acotada al reparto de funciones de los
 especialistas: permite verificar/instalar Typst y su plugin y compilar la plantilla,
 pero no modificar el manuscrito ni ejecutar investigaciones ajenas al rol.
-
+Tras activar el plugin, consulta las skills que recibe tu proveedor mediante
+`danil skill list --agent <proveedor> --json` (usa el ID real del proveedor).
+Si la skill `typst` ya está accesible, léela antes de trabajar con documentos.
+Si el catálogo de herramientas/skills de la sesión se actualiza en el siguiente
+turno, deja constancia de «plugin instalado y activado; skill pendiente de cargar»
+y compruébala al retomarlo, sin repetir la instalación ni solicitar confirmación.
+No inventes herramientas que aún no están disponibles. Conserva en el contexto
+el estado verificado y lo pendiente, y transmite ambos al especialista que continúe.
 
 Este repositorio público permite desarrollar proyectos propios con agentes y skills:
 explorar ideas, consultar literatura, construir modelos y prototipos, preparar
@@ -126,17 +137,25 @@ espacio si el entorno no cambió; antes de compilar vuelve a comprobar la versi�
    - **macOS:** `brew install typst`.
    - **Windows:** `winget install --id Typst.Typst -e`.
 3. **Verificar la instalación.** Vuelve a ejecutar `typst --version`. Si el comando sigue sin existir, revisa el PATH (en Linux, que `~/.local/bin` esté incluido) y reinicia la terminal. Si la instalación falla, detente y dile a la persona qué error apareció; no compiles con un Typst que no sea el verificado.
-4. **Instalar y activar el plugin typst de Danil en este espacio.** Ejecuta `danil plugin check --id typst --json`. Si responde `"ready": true`, continúa. Si falta o no está listo, ejecuta sin preguntar:
-   ```sh
-   danil plugin install --id typst --json
-   danil plugin enable --id typst --json
-   danil plugin check --id typst --json
-   ```
-   Exige `"ready": true` en la comprobación final. No basta con instalar el binario de consola.
+4. **Instalar y activar el plugin typst de Danil en este espacio, desde el primer turno.**
+   Ejecuta `danil plugin list --json` y localiza `id: "typst"`.
+   - Si `installed` es falso, ejecuta `danil plugin install --id typst --json`.
+   - Si `enabled` es falso, ejecuta `danil plugin enable --id typst --json`, aunque
+     el binario ya estuviera instalado por otra cuenta o espacio.
+   - Vuelve a ejecutar `danil plugin list --json` y exige `installed: true` y
+     `enabled: true` para este espacio. Después ejecuta
+     `danil plugin check --id typst --json` y exige `"ready": true`.
+   No basta con el binario de consola, con un recibo de solicitud aceptada ni con
+   `ready: true` sin comprobar la activación. Si una operación devuelve un ID y
+   sigue en curso, conserva el ID y observa su resultado con el CLI antes de
+   declarar que terminó; consulta `danil guide` para la sintaxis vigente.
    Si `install` falla con `xz: Cannot exec`, crea un `xz` de usuario en `~/.local/bin`
    que use `lzma` de Python (stdin → stdout; `-z` comprime y, sin `-z`, descomprime),
    hazlo ejecutable y reintenta. No uses `sudo`. Si Danil exige autoridad de la
    persona, informa del rechazo y del paso pendiente en Configuración; no eludas el límite.
+   Si el plugin está instalado y activado pero no está listo, reporta el diagnóstico
+   de `plugin check`; no entres en un bucle de reinstalación. Comprueba después la
+   disponibilidad de la skill como se indica al inicio de este archivo.
 5. **Comprobar la compilación de la plantilla.** Desde la raíz:
    ```sh
    typst compile --root paper paper/main.typ paper/main.pdf

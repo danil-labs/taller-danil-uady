@@ -103,7 +103,11 @@ requirements.txt       dependencias de Python
 **Preparación automática desde el primer mensaje.** El agente debe comprobar
 Typst y su plugin de Danil antes de cerrar la bienvenida, instalar lo que falte
 y activar el plugin en tu espacio, sin esperar a que pidas un paper. Te indica
-la versión y el resultado comprobado. Si el entorno bloquea una operación,
+la versión y el resultado comprobado. La primera instalación no requiere que la
+skill `typst` exista de antemano: el agente usa el CLI para preparar el plugin,
+comprueba instalación, activación en tu espacio y estado listo, y después busca
+su skill. Si la sesión la recibe en el siguiente turno, conserva ese pendiente
+sin volver a instalar. Si el entorno bloquea una operación,
 te explica qué falta; una instrucción en el repositorio no sustituye los permisos
 de tu cuenta. El [procedimiento obligatorio](AGENTS.md#verificación-de-typst)
 está en las reglas del proyecto.

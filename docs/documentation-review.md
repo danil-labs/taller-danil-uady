@@ -167,3 +167,25 @@ Fecha: 2026-11-18. Entrega del simulador con Claude, integrada en
 El límite de 100 MiB por archivo se contrastó el 2026-11-18 con
 [GitHub Docs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github).
 La prueba de presentación no valida los experimentos numéricos ni los notebooks.
+
+
+## Primera instalación sin depender de la skill instalada
+
+Fecha: 2026-11-18. Base: `fc3cff0`. Ajuste solicitado antes de abrir y fusionar el PR.
+
+- AGENTS.md autoriza la instalación en el primer turno aunque la skill typst aún
+  no esté cargada. Se usa el CLI de Danil para preparar el plugin; luego se
+  consulta el catálogo del proveedor y se conserva cualquier carga pendiente.
+- Se separan los estados installed, enabled (por espacio) y ready. Una instalación
+  global o una solicitud aceptada no bastan para declarar el entorno preparado.
+- README explica la misma secuencia y el caso de actualización del catálogo en
+  el turno siguiente. No se fijan proveedor ni modelo y no se amplían permisos.
+
+Comprobaciones del delta: **3 pasan · 0 fallan · 1 sin comprobar**.
+
+| Estado | Evidencia |
+|---|---|
+| Pasa | plugin list: typst installed=true y enabled=true en este espacio; plugin check: ready=true. |
+| Pasa | skill list --agent codex: el catálogo resuelto contiene typst. |
+| Pasa | Enlaces locales y git diff --check; la regla no convierte la falta inicial de skill en requisito circular. |
+| Sin comprobar | Instalación desde cero en otra cuenta y recarga del catálogo de una sesión que inicialmente carezca de la skill. No se desinstaló el entorno funcional para simularlo. |
