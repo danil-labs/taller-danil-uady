@@ -16,12 +16,5 @@
     ".agents/skills/peer-review",
     ".agents/skills/scientific-critical-thinking",
     ".agents/skills/scientific-visualization"
-  ],
-  "permissions": {
-    "ceiling": "read-only",
-    "tools": [
-      "read",
-      "web"
-    ]
-  }
+  ]
 }

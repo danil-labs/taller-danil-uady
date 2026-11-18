@@ -12,14 +12,5 @@
     ".agents/skills/scientific-visualization",
     ".agents/skills/anatomy",
     "skills/figura-para-paper"
-  ],
-  "permissions": {
-    "ceiling": "auto",
-    "tools": [
-      "read",
-      "edit",
-      "execute",
-      "web"
-    ]
-  }
+  ]
 }

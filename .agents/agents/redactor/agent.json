@@ -13,14 +13,6 @@
     ".agents/skills/paper-orchestra",
     ".agents/skills/scientific-writing"
   ],
-  "permissions": {
-    "ceiling": "auto",
-    "tools": [
-      "read",
-      "edit",
-      "execute"
-    ]
-  },
   "requires": {
     "tools": [
       {

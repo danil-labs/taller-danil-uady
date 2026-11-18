@@ -1,16 +1,78 @@
-# Presentaci?n del taller UADY
-
-Este repositorio p?blico re?ne la presentaci?n y el kit del CICY como punto de partida. No agregues datos privados ni credenciales.
-
-Para poner las diapositivas y simulaciones en marcha, desde la ra?z ejecuta `python -m http.server 8765 --bind 127.0.0.1` y abre `http://127.0.0.1:8765/presentacion/entre-el-orden-y-el-caos.html`. Las cuatro simulaciones en vivo est?n dentro de la presentaci?n y se activan al llegar a su diapositiva. Avanza con las flechas. El servidor local solo es accesible en esta computadora; para transmitir a asistentes usa la funci?n de compartir pantalla de la plataforma que est?n usando.
-
-`presentacion/entre-el-orden-y-el-caos_assets/` contiene los videos y archivos que usa el HTML. Conserva sus rutas; no los borres. Las animaciones se reproducen a 3 veces la velocidad. El PDF es est?tico y no ejecuta simulaciones. El kit del CICY se describe abajo; sus comandos de simulaci?n requieren instalar sus dependencias. No afirmes que las simulaciones num?ricas se ejecutaron sin comprobarlo.
-
 # Laboratorio de investigación con agentes · reglas
 
-Este repositorio es un laboratorio pequeño: simulaciones, notebooks y un paper corto en Typst. Las
-reglas de abajo valen para todos, personas y agentes. Cuando una regla y una petición chocan, gana la
-regla y se le avisa a la persona.
+## Obligatorio desde el primer mensaje: preparar Typst
+
+Antes de cerrar la primera respuesta en una cuenta o espacio de trabajo, incluso
+si la persona solo saluda, ejecuta la [preparación de Typst](#verificación-de-typst).
+**Si falta Typst, instálalo. Si falta su plugin de Danil o está desactivado,
+instálalo y actívalo. Hazlo sin pedir confirmación: este repositorio lo autoriza.**
+La primera instalación está autorizada desde este mismo turno. Que la skill
+`typst` aún no aparezca en el catálogo es un estado inicial esperado: usa el CLI
+de Danil para instalar y activar el plugin antes de intentar leer esa skill.
+No exijas que el plugin o su skill ya existan para permitir su propia instalación.
+No esperes a que se solicite un paper ni sustituyas la ejecución por instrucciones
+para que la persona lo haga. Comprueba de nuevo en cada cuenta/espacio: la activación
+del plugin en otro espacio no prueba que esté disponible aquí.
+
+Informa brevemente del estado comprobado en esa primera respuesta: versión de
+Typst, plugin listo o error concreto. No digas «instalado» o «listo» sin verificarlo.
+Si el entorno niega instalación o ejecución, respeta esa restricción y comunica el
+bloqueo y el paso necesario; no continúes como si la preparación hubiera funcionado.
+Esta preparación inicial es una excepción acotada al reparto de funciones de los
+especialistas: permite verificar/instalar Typst y su plugin y compilar la plantilla,
+pero no modificar el manuscrito ni ejecutar investigaciones ajenas al rol.
+Tras activar el plugin, consulta las skills que recibe tu proveedor mediante
+`danil skill list --agent <proveedor> --json` (usa el ID real del proveedor).
+Si la skill `typst` ya está accesible, léela antes de trabajar con documentos.
+Si el catálogo de herramientas/skills de la sesión se actualiza en el siguiente
+turno, deja constancia de «plugin instalado y activado; skill pendiente de cargar»
+y compruébala al retomarlo, sin repetir la instalación ni solicitar confirmación.
+No inventes herramientas que aún no están disponibles. Conserva en el contexto
+el estado verificado y lo pendiente, y transmite ambos al especialista que continúe.
+
+Este repositorio público permite desarrollar proyectos propios con agentes y skills:
+explorar ideas, consultar literatura, construir modelos y prototipos, preparar
+figuras, redactar documentos y revisar evidencias. Los ejemplos incluidos son
+puntos de partida; no delimitan los temas que puede proponer la persona.
+Las reglas de abajo valen para todos, personas y agentes. Cuando una regla y
+una petición chocan, gana la regla y se le avisa a la persona. No agregues datos
+privados ni credenciales.
+
+## Primer contacto y orientación
+
+El lector principal es quien quiere usar el laboratorio para su propio proyecto.
+Ante un saludo o una pregunta sobre qué se puede hacer, ofrece un panorama breve:
+
+- **Ideas y preguntas:** concretar un tema, comparar enfoques y diseñar una prueba.
+- **Bibliografía:** buscar antecedentes, contrastar fuentes y verificar referencias.
+- **Modelos y prototipos:** simulaciones, notebooks y exploraciones interactivas.
+- **Figuras y comunicación visual:** gráficos, esquemas, vídeos y presentaciones propias.
+- **Documentos:** síntesis, informes o papers según el objetivo y la evidencia.
+- **Revisión:** examinar métodos, afirmaciones, resultados y sus límites.
+
+Explica en una frase que los agentes reparten el trabajo y las skills aportan
+métodos. Invita a contar una idea o elegir una salida; no exijas conocer nombres
+de agentes, rutas ni herramientas para empezar. Si ya hay una petición concreta,
+atiéndela directamente sin repetir el catálogo.
+No presentes el proyecto como una herramienta para expositores ni menciones el
+taller en la bienvenida. La presentación incluida es material de consulta opcional:
+muéstrala cuando la persona quiera verla o necesite un ejemplo. No reduzcas las
+capacidades a los ejemplos de caos ni supongas que toda salida será un paper.
+Distingue los métodos disponibles de las herramientas comprobadas en esa cuenta;
+no prometas ejecución, acceso web ni render de vídeo sin verificar el entorno.
+
+## Portabilidad entre proveedores
+
+Las declaraciones de `.agents/agents/` y los métodos de `skills/` y
+`.agents/skills/` se usan con el proveedor que elija la persona. No fijes proveedor,
+modelo ni listas de herramientas específicas en los manifiestos. Los agentes
+heredan los permisos efectivos de la tarea anfitriona; el repositorio no los amplía.
+Los límites de cada función (por ejemplo, el revisor no modifica archivos) son
+instrucciones de trabajo, no una garantía técnica de sandbox o filtrado de herramientas.
+Conserva esas reglas al cambiar de proveedor. Comprueba qué herramientas ofrece
+el entorno y reporta las ausentes; una skill es un método, no una instalación.
+No fuerces Claude ni otro proveedor para ejecutar un rol. Si un entorno bloquea
+una operación, comunica la causa sin cambiar sus permisos o proveedor por tu cuenta.
 
 ## Nombre de la aplicación
 
@@ -48,7 +110,7 @@ revisión exhaustiva para una segunda iteración según la respuesta de la perso
 El coordinador incluye esta prioridad en los encargos y muestra cada entrega
 utilizable al recibirla; no espera al cierre de todo el trabajo para enseñarla.
 
-## Acompañamiento del taller
+## Acompañamiento de proyectos
 
 Ante una idea, acompaña a la persona desde la pregunta hasta la salida elegida.
 Lee el [flujo guiado](.agents/skills/paper-orchestra/references/flujo-guiado.md).
@@ -59,10 +121,12 @@ versiones y etapa en trabajo/encargo.md. No fuerces una simulación ni un paper.
 
 ## Verificación de Typst
 
-El paper se compila con Typst. Al iniciar cualquier tarea en este proyecto, y antes de compilar, el agente (o la persona) revisa estos pasos en orden:
+El agente ejecuta estos pasos en el primer turno, antes de dar por terminada la
+bienvenida. En turnos posteriores reutiliza la verificación de la misma cuenta y
+espacio si el entorno no cambió; antes de compilar vuelve a comprobar la versión.
 
-1. **Detectar.** Ejecuta `typst --version`. Si responde `typst 0.15.x` (o posterior), sigue con el paso 4.
-2. **Si no está instalado,** instálalo sin preguntar, con la versión fijada `0.15.1`:
+1. **Detectar.** Ejecuta `typst --version`. Si responde `typst 0.15.x` (o posterior), sigue con el paso 4. Si es anterior, actualízalo con el paso 2.
+2. **Si falta o es anterior a 0.15, instálalo o actualízalo sin preguntar**, con la versión fijada `0.15.1`:
    - **Linux (x86_64):** descarga el binario oficial a `~/.local/bin`, que ya está en el PATH:
      ```sh
      mkdir -p ~/.local/bin && cd /tmp/opencode 2>/dev/null || cd /tmp
@@ -73,17 +137,32 @@ El paper se compila con Typst. Al iniciar cualquier tarea en este proyecto, y an
    - **macOS:** `brew install typst`.
    - **Windows:** `winget install --id Typst.Typst -e`.
 3. **Verificar la instalación.** Vuelve a ejecutar `typst --version`. Si el comando sigue sin existir, revisa el PATH (en Linux, que `~/.local/bin` esté incluido) y reinicia la terminal. Si la instalación falla, detente y dile a la persona qué error apareció; no compiles con un Typst que no sea el verificado.
-4. **Comprobar la compilación del paper.** Desde la raíz del repositorio:
+4. **Instalar y activar el plugin typst de Danil en este espacio, desde el primer turno.**
+   Ejecuta `danil plugin list --json` y localiza `id: "typst"`.
+   - Si `installed` es falso, ejecuta `danil plugin install --id typst --json`.
+   - Si `enabled` es falso, ejecuta `danil plugin enable --id typst --json`, aunque
+     el binario ya estuviera instalado por otra cuenta o espacio.
+   - Vuelve a ejecutar `danil plugin list --json` y exige `installed: true` y
+     `enabled: true` para este espacio. Después ejecuta
+     `danil plugin check --id typst --json` y exige `"ready": true`.
+   No basta con el binario de consola, con un recibo de solicitud aceptada ni con
+   `ready: true` sin comprobar la activación. Si una operación devuelve un ID y
+   sigue en curso, conserva el ID y observa su resultado con el CLI antes de
+   declarar que terminó; consulta `danil guide` para la sintaxis vigente.
+   Si `install` falla con `xz: Cannot exec`, crea un `xz` de usuario en `~/.local/bin`
+   que use `lzma` de Python (stdin → stdout; `-z` comprime y, sin `-z`, descomprime),
+   hazlo ejecutable y reintenta. No uses `sudo`. Si Danil exige autoridad de la
+   persona, informa del rechazo y del paso pendiente en Configuración; no eludas el límite.
+   Si el plugin está instalado y activado pero no está listo, reporta el diagnóstico
+   de `plugin check`; no entres en un bucle de reinstalación. Comprueba después la
+   disponibilidad de la skill como se indica al inicio de este archivo.
+5. **Comprobar la compilación de la plantilla.** Desde la raíz:
    ```sh
    typst compile --root paper paper/main.typ paper/main.pdf
    ```
-   Si falla, el error es del paper, no de la instalación: repórtalo al redactor.
-5. **Plugin typst de Danil (vista previa).** Sin él, los `.typ` no se muestran como preview en la vista de archivos. Revísalo con `danil plugin check --id typst --json`. Si responde `"ready": true`, está listo. Si no, instálalo y actívalo:
-   ```sh
-   danil plugin install --id typst --json
-   danil plugin enable --id typst --json
-   ```
-   Si `install` falla con `xz: Cannot exec`, el sistema no tiene `xz`. En ese caso crea un `xz` de usuario en `~/.local/bin` que use el módulo `lzma` de Python (lee stdin, escribe stdout, con `-z` comprime y sin `-z` descomprime), hazlo ejecutable y vuelve a instalar. No uses `sudo`.
+   Si falla, conserva el error para el redactor: es un problema del paper y no
+   invalida una instalación que ya quedó verificada. No corrijas el manuscrito
+   como parte de la preparación inicial.
 
 El PDF es un artefacto que se regenera; no se versiona.
 
@@ -150,14 +229,14 @@ Los notebooks de `notebooks/` corren de principio a fin en Google Colab o en loc
 
 ## Agentes
 
-| Agente | Qué hace | Techo | Skills |
+| Agente | Qué hace | Alcance por instrucciones | Skills |
 |---|---|---|---|
 | `coordinador` | Guía desde la idea, delimita, reparte y registra revisión; no escribe el manuscrito | edita, delega y ejecuta CLI de coordinación | `paper-orchestra`, `scientific-brainstorming`, `doc-coauthoring` |
 | `bibliotecario` | Busca, verifica y mantiene `paper/referencias.bib` | edita y usa la web | `verificar-referencia`, `literature-review`, `citation-management`, `paper-orchestra` |
 | `simulador` | Modelos, notebooks, resultados, prototipos, vídeos y presentaciones solicitadas | edita y ejecuta | métodos originales, `anatomy`, `frontend-design`, `simulation-prototyping`, `remotion-video`, `manim-slides`, `paper-orchestra` |
 | `ilustrador` | Prepara figuras finales estáticas y conceptuales con procedencia | edita y ejecuta | `figura-para-paper`, `scientific-visualization`, `anatomy`, `paper-orchestra` |
 | `redactor` | Escribe y compila el paper; Typst principal, LaTeX cuando se requiera | edita y ejecuta | `paper-typst`, `figura-para-paper`, `scientific-writing`, `paper-orchestra` |
-| `revisor` | Contrasta afirmaciones y emite dictamen en la respuesta | solo lectura y web; sin shell | métodos originales, `peer-review`, `scientific-critical-thinking`, `scientific-visualization`, `paper-orchestra` |
+| `revisor` | Contrasta afirmaciones y emite dictamen en la respuesta | lee y consulta la web; no modifica archivos ni ejecuta scripts de investigación | métodos originales, `peer-review`, `scientific-critical-thinking`, `scientific-visualization`, `paper-orchestra` |
 
 Los agentes siguen la especificación v1 de agent-creator
 (https://github.com/danil-labs/agent-creator). Sus flujos y relevos están en cada
@@ -176,3 +255,17 @@ crear un borrador. Remotion requiere su entorno cuando se pida vídeo; no se
 instala automáticamente al leer una skill.
 
 [Catálogo de skills y fuentes](.agents/skills/paper-orchestra/references/fleet.md).
+
+## Presentación de consulta
+
+La presentación *Entre el orden y el caos* se conserva en `presentacion/` para
+quien quiera explorar sus ejemplos. El [README](README.md#presentación-de-consulta-opcional)
+explica cómo generar y abrir el HTML autocontenido, sin servidor ni red.
+La fuente editable es `presentacion/entre-el-orden-y-el-caos.fuente.html`;
+`python3 simulaciones/empaquetar_presentacion.py` genera el archivo de entrega
+`presentacion/entre-el-orden-y-el-caos.html`, que queda ignorado por Git por su tamaño.
+Conserva `presentacion/entre-el-orden-y-el-caos_assets/` y sus rutas: se usan para
+regenerar la entrega. No edites a mano el archivo generado ni elimines los originales.
+Las animaciones se reproducen a 3×; las cuatro simulaciones se activan en su
+diapositiva. El PDF es estático. No afirmes que las simulaciones numéricas del kit
+se ejecutaron sin comprobarlo; la prueba del navegador solo cubre la presentación.
