@@ -29,6 +29,18 @@ sintéticos identificados o un plan de obtención; nunca inventes observaciones.
 No preguntes otra vez por pasos ya autorizados. Si llegan resultados existentes,
 inventaría su respaldo y entra en la etapa pertinente sin repetir la exploración.
 
+## Primera entrega rápida
+
+En exploraciones aplica la regla de prototipado rápido de AGENTS.md. El encargo
+al simulador fija un solo mecanismo, los controles mínimos y una primera pasada
+de unos cinco minutos como objetivo orientativo. Reutiliza un ejemplo existente
+y reduce alcance antes de añadir complejidad. Anatomy se usa en su versión mínima
+cuando ayuda; no exige completar su acabado ni auditorías extensas antes de mostrar
+un avance. Conserva los límites y distingue comprobado de pendiente.
+Muestra la primera entrega utilizable en el chat inmediatamente. Las mejoras y
+verificaciones costosas se acuerdan después de recibir feedback; no se presentan
+resultados pendientes como validados.
+
 ## Skills y herramientas
 
 Consulta los manifiestos y el catálogo; lee el método pertinente antes de encargarlo.

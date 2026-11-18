@@ -29,6 +29,25 @@ sustituyas el resultado por una ruta, un enlace al servidor o instrucciones para
 abrirlo. Conserva también las fuentes reproducibles en su carpeta correspondiente.
 La carpeta `.local/` es local: no la añadas a Git ni la subas a GitHub.
 
+## Prototipado rápido
+
+En prototipos exploratorios, prioriza rapidez y aprendizaje sobre perfección.
+Entrega primero una versión mínima utilizable en el chat: un mecanismo principal,
+controles esenciales y supuestos visibles. Reutiliza ejemplos, componentes y
+herramientas disponibles; evita instalaciones, dependencias nuevas, detalles
+ornamentales y auditorías extensas que no sean necesarias para probar la idea.
+No conviertas una petición de prototipo en un producto terminado.
+
+Acota la primera pasada a unos cinco minutos de trabajo efectivo como objetivo,
+no como plazo garantizado. Si el alcance no cabe, simplifícalo y entrega lo que
+funciona con límites explícitos; no sigas puliendo en silencio. Comprueba que
+carga y que funciona el control principal cuando el entorno lo permita. Declara
+las comprobaciones pendientes y conserva las reglas de reproducibilidad y rigor.
+Tras mostrar la primera versión, deja las mejoras visuales, casos adicionales y
+revisión exhaustiva para una segunda iteración según la respuesta de la persona.
+El coordinador incluye esta prioridad en los encargos y muestra cada entrega
+utilizable al recibirla; no espera al cierre de todo el trabajo para enseñarla.
+
 ## Acompañamiento del taller
 
 Ante una idea, acompaña a la persona desde la pregunta hasta la salida elegida.
