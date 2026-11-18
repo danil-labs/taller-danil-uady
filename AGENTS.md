@@ -28,6 +28,36 @@ no basta mencionarla ni representar sus funciones en el chat. Paraleliza trabajo
 independientes y conserva un escritor por archivo. Registra decisiones, tareas,
 versiones y etapa en trabajo/encargo.md. No fuerces una simulación ni un paper.
 
+## Verificación de Typst
+
+El paper se compila con Typst. Al iniciar cualquier tarea en este proyecto, y antes de compilar, el agente (o la persona) revisa estos pasos en orden:
+
+1. **Detectar.** Ejecuta `typst --version`. Si responde `typst 0.15.x` (o posterior), sigue con el paso 4.
+2. **Si no está instalado,** instálalo sin preguntar, con la versión fijada `0.15.1`:
+   - **Linux (x86_64):** descarga el binario oficial a `~/.local/bin`, que ya está en el PATH:
+     ```sh
+     mkdir -p ~/.local/bin && cd /tmp/opencode 2>/dev/null || cd /tmp
+     curl -fsSL -o typst.tar.xz https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unknown-linux-musl.tar.xz
+     python3 -c "import tarfile,shutil,os; t=tarfile.open('typst.tar.xz','r:xz'); t.extractall('.'); s=[m for m in t.getnames() if m.endswith('/typst')][0]; d=os.path.expanduser('~/.local/bin/typst'); shutil.copy(s,d); os.chmod(d,0o755)"
+     ```
+     Usa Python porque `tar -xJ` falla si el sistema no tiene `xz`.
+   - **macOS:** `brew install typst`.
+   - **Windows:** `winget install --id Typst.Typst -e`.
+3. **Verificar la instalación.** Vuelve a ejecutar `typst --version`. Si el comando sigue sin existir, revisa el PATH (en Linux, que `~/.local/bin` esté incluido) y reinicia la terminal. Si la instalación falla, detente y dile a la persona qué error apareció; no compiles con un Typst que no sea el verificado.
+4. **Comprobar la compilación del paper.** Desde la raíz del repositorio:
+   ```sh
+   typst compile --root paper paper/main.typ paper/main.pdf
+   ```
+   Si falla, el error es del paper, no de la instalación: repórtalo al redactor.
+5. **Plugin typst de Danil (vista previa).** Sin él, los `.typ` no se muestran como preview en la vista de archivos. Revísalo con `danil plugin check --id typst --json`. Si responde `"ready": true`, está listo. Si no, instálalo y actívalo:
+   ```sh
+   danil plugin install --id typst --json
+   danil plugin enable --id typst --json
+   ```
+   Si `install` falla con `xz: Cannot exec`, el sistema no tiene `xz`. En ese caso crea un `xz` de usuario en `~/.local/bin` que use el módulo `lzma` de Python (lee stdin, escribe stdout, con `-z` comprime y sin `-z` descomprime), hazlo ejecutable y vuelve a instalar. No uses `sudo`.
+
+El PDF es un artefacto que se regenera; no se versiona.
+
 ## Comandos
 
 Desde la raíz del repositorio (Python 3.10 o posterior):
