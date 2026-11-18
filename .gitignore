@@ -31,3 +31,6 @@ datos-privados/
 node_modules/
 prototipos/**/.remotion/
 prototipos/**/out/
+
+# Archivos locales de esta computadora: nunca se publican.
+.local/

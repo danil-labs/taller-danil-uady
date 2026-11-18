@@ -19,6 +19,16 @@ respuestas a la persona. «Terminus» es el nombre anterior; no lo presentes com
 nombre actual. Conserva sin modificar los identificadores técnicos heredados
 (rutas, esquemas de enlaces o claves) cuando sean necesarios para funcionar.
 
+## Mostrar los resultados
+
+Muestra por defecto los resultados generados en el chat, salvo que la persona
+pida explícitamente otro lugar. Publica los prototipos interactivos como
+visualizaciones del chat y las imágenes o documentos con su vista previa.
+Incluye una explicación breve de qué se puede explorar y sus límites; no
+sustituyas el resultado por una ruta, un enlace al servidor o instrucciones para
+abrirlo. Conserva también las fuentes reproducibles en su carpeta correspondiente.
+La carpeta `.local/` es local: no la añadas a Git ni la subas a GitHub.
+
 ## Acompañamiento del taller
 
 Ante una idea, acompaña a la persona desde la pregunta hasta la salida elegida.
