@@ -29,7 +29,7 @@ No se ejecutan validadores que busquen `\documentclass` o `\cite` sobre Typst.
    <binary> compile --root <raíz del documento> --diagnostic-format short <main.typ> <PDF temporal>
    ```
 
-   Si usas la instalación de Terminus, establece `TYPST_PACKAGE_CACHE_PATH` con
+   Si usas la instalación de Danil, establece `TYPST_PACKAGE_CACHE_PATH` con
    `package_cache` de su `installation.json`. Con el compilador local conserva su
    caché configurada o predeterminada, sin inventar ese campo. Usa un plazo finito.
    Conserva stderr y código de salida. Resuelve errores en el proyecto y repite;

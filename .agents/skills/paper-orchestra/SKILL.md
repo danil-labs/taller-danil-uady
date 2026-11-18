@@ -16,6 +16,11 @@ ejecuta solo tu función en `references/roles.md` y devuelve la entrega al
 coordinador; no reinicies el ciclo ni asumas la autoridad de los otros escritores.
 Consulta `references/fleet.md` para la asignación de skills y sus fuentes.
 
+Para una idea sin resultados, consulta `references/flujo-guiado.md` antes de
+organizar el documento: delimita la pregunta, encarga una prueba y permite otra
+salida. En este repositorio las especialidades se ejecutan mediante handlers en
+tareas reales de Danil; no se representan sus funciones en una sola conversación.
+
 ## Entradas
 
 - Carpeta autorizada, idea, datos o resultados y fuentes disponibles. Para un
@@ -35,8 +40,7 @@ Consulta `references/fleet.md` para la asignación de skills y sus fuentes.
    `trabajo/esquema.md`, con secciones, preguntas, afirmaciones y figuras previstas.
    Vincula cada resultado con su archivo y ubicación en la fuente original.
 3. **Investigar y dibujar:** asigna en paralelo los roles de bibliografía y figuras
-   de `references/roles.md` si hay herramientas de subtareas; en otro caso realiza
-   ambas funciones en secuencia. Si se pide prototipo, simulación o vídeo, asigna
+   de `references/roles.md` si hay herramientas de subtareas; en otro caso registra la capacidad faltante; no suplantes al especialista. Si se pide prototipo, simulación o vídeo, asigna
    @simulador una carpeta `prototipos/` separada antes de que figuras use
    sus salidas. Cada entrega tiene un solo escritor. No llames
    «agentes activos» a funciones que ejecutas tú mismo.

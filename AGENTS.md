@@ -12,6 +12,22 @@ Este repositorio es un laboratorio pequeño: simulaciones, notebooks y un paper 
 reglas de abajo valen para todos, personas y agentes. Cuando una regla y una petición chocan, gana la
 regla y se le avisa a la persona.
 
+## Nombre de la aplicación
+
+La aplicación se llama **Danil**. Usa ese nombre en documentación, ejemplos y
+respuestas a la persona. «Terminus» es el nombre anterior; no lo presentes como
+nombre actual. Conserva sin modificar los identificadores técnicos heredados
+(rutas, esquemas de enlaces o claves) cuando sean necesarios para funcionar.
+
+## Acompañamiento del taller
+
+Ante una idea, acompaña a la persona desde la pregunta hasta la salida elegida.
+Lee el [flujo guiado](.agents/skills/paper-orchestra/references/flujo-guiado.md).
+El coordinador activa cada especialidad como tarea real con su handler de Danil;
+no basta mencionarla ni representar sus funciones en el chat. Paraleliza trabajos
+independientes y conserva un escritor por archivo. Registra decisiones, tareas,
+versiones y etapa en trabajo/encargo.md. No fuerces una simulación ni un paper.
+
 ## Comandos
 
 Desde la raíz del repositorio (Python 3.10 o posterior):
@@ -77,7 +93,7 @@ Los notebooks de `notebooks/` corren de principio a fin en Google Colab o en loc
 
 | Agente | Qué hace | Techo | Skills |
 |---|---|---|---|
-| `coordinador` | Delimita el encargo, esquema, reparto y revisión; no escribe el manuscrito | edita y delega; sin shell | `paper-orchestra`, `scientific-brainstorming`, `doc-coauthoring` |
+| `coordinador` | Guía desde la idea, delimita, reparte y registra revisión; no escribe el manuscrito | edita, delega y ejecuta CLI de coordinación | `paper-orchestra`, `scientific-brainstorming`, `doc-coauthoring` |
 | `bibliotecario` | Busca, verifica y mantiene `paper/referencias.bib` | edita y usa la web | `verificar-referencia`, `literature-review`, `citation-management`, `paper-orchestra` |
 | `simulador` | Modelos, notebooks, resultados, prototipos y vídeos solicitados | edita y ejecuta | métodos originales, `anatomy`, `frontend-design`, `simulation-prototyping`, `remotion-video`, `paper-orchestra` |
 | `ilustrador` | Prepara figuras finales estáticas y conceptuales con procedencia | edita y ejecuta | `figura-para-paper`, `scientific-visualization`, `anatomy`, `paper-orchestra` |
