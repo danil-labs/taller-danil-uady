@@ -33,3 +33,29 @@ anterior (sin execute): este intento no prueba la declaración editada. El motor
 ofreció Claude como alternativa; no se cambió de proveedor ni se quitaron límites.
 Queda pendiente guardar la versión con identidad autorizada y ensayar en un
 proveedor que sostenga sus permisos.
+
+## Skill de Manim Slides y marca Danil
+
+Fecha: 2026-11-18. Base: `2cb1fa6`. Revisión limitada a la nueva skill, sus
+enlaces de catálogo y asignación al simulador; no sustituye la revisión anterior.
+Se adapta la skill MIT de Ruben Branco con commit y licencia conservados en
+`.agents/skills/manim-slides/`; las APIs se contrastaron con documentación oficial.
+
+Comprobaciones: **4 pasan · 0 fallan · 2 sin comprobar**.
+
+- Pasa: `quick_validate.py .agents/skills/manim-slides` del skill-creator.
+  Se ejecutó con PyYAML en un entorno temporal de `uv`.
+- Pasa: ejemplo Python analizado con `ast.parse`, enlaces locales existentes,
+  cuerpo de 88 líneas, catorce skills adicionales y ruta incluida en el manifiesto.
+- Pasa: `validate_agent.py --root . --strict` de create-agent y
+  `danil handler validate --root . --strict --json`: seis agentes válidos,
+  cero errores y advertencias; cuatro avisos informativos de requisitos previos.
+- Pasa: `git diff --check`. No se amplían permisos, identidad ni memoria del simulador.
+- Sin comprobar: selección automática por una nueva conversación y ejecución
+  del handler con la skill; solo se comprobó su declaración y asignación.
+- Sin comprobar: render y exportación del ejemplo. Manim y Manim Slides no
+  están en PATH; los comandos se documentan como ejemplos para un entorno preparado.
+
+Los cambios de marca de la misma entrega afectan tres videos y las páginas 8,
+50 y 51 del PDF. Los videos conservan resolución, fps y número de fotogramas;
+las otras 48 páginas se compararon por hash de su render y permanecen idénticas.

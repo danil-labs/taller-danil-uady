@@ -8,7 +8,7 @@ Las verificaciones y sus límites quedan en [validation.md](validation.md).
 | Agente | Skills asignadas | Para qué |
 |---|---|---|
 | `coordinador` | paper-orchestra, scientific-brainstorming, doc-coauthoring | Delimitar, explorar ideas y coordinar entregas verificables |
-| `simulador` | paper-orchestra, anatomy, frontend-design, simulation-prototyping, remotion-video | Prototipos interactivos, modelos explícitos y vídeos reproducibles |
+| `simulador` | paper-orchestra, anatomy, frontend-design, simulation-prototyping, remotion-video, manim-slides | Prototipos interactivos, modelos explícitos, vídeos y presentaciones animadas |
 | `bibliotecario` | paper-orchestra, literature-review, citation-management | Búsqueda, síntesis, metadatos y BibTeX verificables |
 | `ilustrador` | paper-orchestra, scientific-visualization, anatomy | Gráficos derivados de datos e ilustraciones conceptuales |
 | `redactor` | paper-orchestra, scientific-writing; typst del entorno | Manuscrito modular, evidencia y compilación Typst; alternativa LaTeX |
@@ -45,6 +45,12 @@ completo ni ejecutar sus scripts durante la incorporación:
   no redistribuye su pack sin licencia declarada.
 
 ## Qué aporta y qué necesita el entorno
+
+La skill [manim-slides](../../manim-slides/SKILL.md) adapta de forma breve el
+método de Ruben Branco (MIT) para presentaciones como la del taller. Su
+[procedencia](../../manim-slides/PROVENANCE.md) fija el commit y las fuentes
+oficiales; conserva la licencia. No instala Manim ni regenera la presentación
+por incorporarse al catálogo.
 
 Typst es el formato principal; el escritor usa la skill `typst` instalada en su
 entorno para resolver el compilador privado. Esta integración no instala Typst

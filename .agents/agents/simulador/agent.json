@@ -15,7 +15,8 @@
     ".agents/skills/anatomy",
     ".agents/skills/frontend-design",
     ".agents/skills/simulation-prototyping",
-    ".agents/skills/remotion-video"
+    ".agents/skills/remotion-video",
+    ".agents/skills/manim-slides"
   ],
   "permissions": {
     "ceiling": "auto",

@@ -49,10 +49,10 @@ Trae listo:
 - **Seis agentes** que se reparten el trabajo: `coordinador`, `bibliotecario`, `simulador`,
   `ilustrador`, `redactor` y `revisor` (en `.agents/agents/`). El simulador también
   prepara prototipos interactivos y vídeos cuando se piden.
-- **Cinco skills originales y trece adicionales** con los métodos que siguen: verificar una referencia, hacer una simulación
+- **Cinco skills originales y catorce adicionales** con los métodos que siguen: verificar una referencia, hacer una simulación
   reproducible, ajustar una ley de potencias, hacer una figura para el paper y escribir el paper en
   Typst (en `skills/`), más revisión bibliográfica, escritura y figuras científicas,
-  Anatomy y guías de simulación y Remotion (en `.agents/skills/`).
+  Anatomy y guías de simulación, Remotion y [Manim Slides](.agents/skills/manim-slides/SKILL.md) (en `.agents/skills/`).
 - **Simulaciones** de dos temas de ejemplo: la aplicación logística (bifurcación, caos, Lyapunov,
   constante de Feigenbaum) y los autómatas celulares (Reglas 30, 90 y 110, las 256 reglas, la pila
   de arena y el incendio forestal, con leyes de potencias).

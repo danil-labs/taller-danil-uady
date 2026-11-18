@@ -95,7 +95,7 @@ Los notebooks de `notebooks/` corren de principio a fin en Google Colab o en loc
 |---|---|---|---|
 | `coordinador` | Guía desde la idea, delimita, reparte y registra revisión; no escribe el manuscrito | edita, delega y ejecuta CLI de coordinación | `paper-orchestra`, `scientific-brainstorming`, `doc-coauthoring` |
 | `bibliotecario` | Busca, verifica y mantiene `paper/referencias.bib` | edita y usa la web | `verificar-referencia`, `literature-review`, `citation-management`, `paper-orchestra` |
-| `simulador` | Modelos, notebooks, resultados, prototipos y vídeos solicitados | edita y ejecuta | métodos originales, `anatomy`, `frontend-design`, `simulation-prototyping`, `remotion-video`, `paper-orchestra` |
+| `simulador` | Modelos, notebooks, resultados, prototipos, vídeos y presentaciones solicitadas | edita y ejecuta | métodos originales, `anatomy`, `frontend-design`, `simulation-prototyping`, `remotion-video`, `manim-slides`, `paper-orchestra` |
 | `ilustrador` | Prepara figuras finales estáticas y conceptuales con procedencia | edita y ejecuta | `figura-para-paper`, `scientific-visualization`, `anatomy`, `paper-orchestra` |
 | `redactor` | Escribe y compila el paper; Typst principal, LaTeX cuando se requiera | edita y ejecuta | `paper-typst`, `figura-para-paper`, `scientific-writing`, `paper-orchestra` |
 | `revisor` | Contrasta afirmaciones y emite dictamen en la respuesta | solo lectura y web; sin shell | métodos originales, `peer-review`, `scientific-critical-thinking`, `scientific-visualization`, `paper-orchestra` |
