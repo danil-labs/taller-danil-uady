@@ -4,7 +4,7 @@ Este repositorio p?blico re?ne la presentaci?n y el kit del CICY como punto de p
 
 Para poner las diapositivas y simulaciones en marcha, desde la ra?z ejecuta `python -m http.server 8765 --bind 127.0.0.1` y abre `http://127.0.0.1:8765/presentacion/entre-el-orden-y-el-caos.html`. Las cuatro simulaciones en vivo est?n dentro de la presentaci?n y se activan al llegar a su diapositiva. Avanza con las flechas. El servidor local solo es accesible en esta computadora; para transmitir a asistentes usa la funci?n de compartir pantalla de la plataforma que est?n usando.
 
-`presentacion/entre-el-orden-y-el-caos_assets/` contiene los videos y archivos que usa el HTML. Conserva sus rutas; no los borres. Las animaciones se reproducen a 1.75 veces la velocidad. El PDF es est?tico y no ejecuta simulaciones. El kit del CICY se describe abajo; sus comandos de simulaci?n requieren instalar sus dependencias. No afirmes que las simulaciones num?ricas se ejecutaron sin comprobarlo.
+`presentacion/entre-el-orden-y-el-caos_assets/` contiene los videos y archivos que usa el HTML. Conserva sus rutas; no los borres. Las animaciones se reproducen a 3 veces la velocidad. El PDF es est?tico y no ejecuta simulaciones. El kit del CICY se describe abajo; sus comandos de simulaci?n requieren instalar sus dependencias. No afirmes que las simulaciones num?ricas se ejecutaron sin comprobarlo.
 
 # Laboratorio de investigación con agentes · reglas
 

@@ -59,3 +59,20 @@ Comprobaciones: **4 pasan · 0 fallan · 2 sin comprobar**.
 Los cambios de marca de la misma entrega afectan tres videos y las páginas 8,
 50 y 51 del PDF. Los videos conservan resolución, fps y número de fotogramas;
 las otras 48 páginas se compararon por hash de su render y permanecen idénticas.
+
+## Ritmo y corte de la introducción
+
+Fecha: 2026-11-18. Se corrige el video de portada: las máscaras de marca y la
+copia centrada del logo se activan desde el segundo 2.8 del video fuente, cuando
+ya terminó de salir «Y todas viven…». Antes tapaban parte de esa frase durante
+la transición. Se conserva la duración de 5.3 segundos, 159 fotogramas y 1080p30.
+Las animaciones del HTML pasan de 1.75× a 3×; Reveal conserva `transition: none`.
+
+- Pasa: inspección visual del primer fotograma corregido y de la portada final.
+- Pasa: navegador Chromium, avance y retroceso entre diapositivas 7 y 8;
+  `playbackRate` vale 3 en ambas y la portada termina en menos de 2.2 segundos.
+- Pasa: `ffprobe` confirma resolución, fps, número de fotogramas y duración.
+- Pasa: `git diff --check`. No se modifican las simulaciones ni el PDF estático.
+- Se consultaron modern-web-guidance y MDN sobre reproducción de video. Las
+  búsquedas del primero no ofrecieron una guía específica para `playbackRate`;
+  no se aplicaron patrones de carga o diseño ajenos a este cambio.
