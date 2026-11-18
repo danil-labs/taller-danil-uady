@@ -23,6 +23,7 @@ las skills.
 | `.agents/skills/frontend-design/SKILL.md` | Método adicional dentro de tu función |
 | `.agents/skills/simulation-prototyping/SKILL.md` | Método adicional dentro de tu función |
 | `.agents/skills/remotion-video/SKILL.md` | Método adicional dentro de tu función |
+| `.agents/skills/manim-slides/SKILL.md` | Presentaciones animadas con Manim Slides cuando se soliciten |
 | `skills/simulacion-reproducible/SKILL.md` | Las reglas de todo script y notebook: semillas, rutas, control de corrección, entrega |
 | `skills/ajuste-ley-de-potencias/SKILL.md` | Cada vez que ajustes o afirmes una ley de potencias. Incluye la advertencia de tamaño finito |
 | `skills/figura-para-paper/SKILL.md` | Cuando la figura va al paper |
