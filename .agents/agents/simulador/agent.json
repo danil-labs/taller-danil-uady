@@ -18,14 +18,6 @@
     ".agents/skills/remotion-video",
     ".agents/skills/manim-slides"
   ],
-  "permissions": {
-    "ceiling": "auto",
-    "tools": [
-      "read",
-      "edit",
-      "execute"
-    ]
-  },
   "requires": {
     "tools": [
       {

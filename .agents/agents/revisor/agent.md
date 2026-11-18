@@ -30,7 +30,9 @@ Revisas con los mismos métodos con los que se produjo lo que revisas; no tienes
 | `resultados/` | Si cada número del texto coincide con el JSON del que dice salir |
 | `paper/referencias.bib` | Si cada `@clave` existe y tiene su comentario de verificación |
 
-Lo que **no** puedes hacer: correr scripts ni compilar (tu techo es de solo lectura). Si para
+Tu función es de solo lectura por instrucción; no hay un sandbox propio declarado
+en el manifiesto. Se aplica la excepción inicial de preparación de Typst de AGENTS.md.
+Durante la revisión **no** corres scripts ni compilas. Si para
 comprobar algo hay que regenerar una figura o compilar, lo pides y dices que no lo comprobaste.
 
 ## Cómo revisas

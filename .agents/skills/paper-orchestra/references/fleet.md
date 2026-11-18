@@ -64,7 +64,9 @@ necesita y comunica lo ausente. Remotion representa el vídeo; la validez del mo
 de simulación se comprueba por separado. Anatomy produce explicación conceptual;
 los resultados científicos se trazan desde datos con herramientas de gráficos.
 
-Las reglas locales de integración preservan Typst y los permisos de los agentes
-frente a recomendaciones opcionales de las skills importadas. El revisor solo
-lee y consulta fuentes; solicita a coordinación la evidencia de ejecución.
+Las reglas locales preservan Typst y el reparto de funciones frente a
+recomendaciones opcionales de las skills importadas. Los agentes heredan los
+permisos de la tarea sin exigir un proveedor. La función del revisor es leer y
+consultar fuentes; solicita a coordinación la evidencia de ejecución. Estos
+límites son instrucciones, no aislamiento técnico declarado en el manifiesto.
 El diseño de prototipos no autoriza rediseñar la web o Desk de Danil.

@@ -13,14 +13,6 @@
     ".agents/skills/literature-review",
     ".agents/skills/citation-management"
   ],
-  "permissions": {
-    "ceiling": "auto",
-    "tools": [
-      "read",
-      "edit",
-      "web"
-    ]
-  },
   "requires": {
     "network": [
       {

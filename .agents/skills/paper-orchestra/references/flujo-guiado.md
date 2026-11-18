@@ -69,8 +69,9 @@ esa guía la sintaxis vigente de creación y envío; nunca adivines IDs.
 Activa cada especialidad con task create y su handler; reutiliza su tarea con
 task send. Mencionar @nombre no ejecuta un handler. No sustituyas especialistas
 por subagentes genéricos ni representes sus funciones en el chat principal.
-La ejecución del coordinador se limita por instrucción al CLI de coordinación;
-no ejecuta simulaciones, compilaciones ni desarrollo de producto.
+La ejecución del coordinador se limita por instrucción al CLI de coordinación,
+con la excepción inicial de preparación de Typst indicada en AGENTS.md; no
+ejecuta simulaciones, compilaciones de investigación ni desarrollo de producto.
 
 Cada encargo incluye objetivo, pregunta, fuentes autorizadas y versión, archivos
 asignados, salida, comprobaciones, presupuesto y pendientes. Lanza en paralelo

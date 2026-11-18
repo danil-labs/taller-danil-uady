@@ -1,67 +1,73 @@
-# Taller Danil UADY
+# Laboratorio de investigación con agentes en Danil
 
-Este repositorio re?ne la presentaci?n y el kit del taller ?Entre el orden y el caos? del CICY como base de trabajo para el taller de la UADY.
+Desarrolla tu propia idea con un equipo de agentes: desde una pregunta inicial
+hasta una exploración interactiva, una síntesis de fuentes o un documento con
+evidencias. Tú eliges el tema, el alcance y el resultado; los agentes ayudan a
+buscar, programar, visualizar, escribir y revisar.
+
+## Qué puedes hacer
+
+| Quiero… | Podemos trabajar en… |
+|---|---|
+| Explorar una idea | Preguntas concretas, comparación de enfoques y una primera prueba pequeña |
+| Entender qué se sabe | Búsqueda bibliográfica, síntesis de antecedentes y referencias verificadas |
+| Probar un modelo | Simulaciones reproducibles, notebooks y prototipos con controles interactivos |
+| Explicar un mecanismo o resultado | Gráficos, esquemas conceptuales, vídeos y presentaciones propias |
+| Preparar un documento | Síntesis, informes o papers con figuras, fuentes y resultados trazables |
+| Revisar mi trabajo | Evaluación de métodos, afirmaciones, figuras, evidencia y limitaciones |
+
+Puedes empezar sin datos ni una pregunta cerrada. Los ejemplos de logística,
+autómatas celulares, pila de arena e incendios sirven para aprender y adaptar;
+tu proyecto puede tratar otro tema. El método y las herramientas se eligen según
+lo que quieras explorar. Una ilustración explica un mecanismo; su validez necesita
+evidencia independiente.
 
 ## Empieza con tu proyecto
 
-Abre una tarea con el handler **coordinador** y pega:
+Abre una tarea en Danil con el handler **coordinador** y cuenta lo que quieres hacer.
+No necesitas aprender el catálogo de agentes o skills antes de empezar. Puedes pegar:
 
-> Quiero investigar [mi tema]. Tengo [datos, notas o ninguna evidencia todavía].
-> Ayúdame a concretar una pregunta y una prueba pequeña. Guíame con el flujo del
-> taller y activa a los especialistas como tareas reales de Danil. Antes de
-> ampliar el estudio, muéstrame qué aprendimos y qué falta. Elegiremos después
-> si la salida será un prototipo, una síntesis, un informe o un paper.
+> Quiero explorar [mi tema]. Tengo [datos, notas o solo una idea]. Ayúdame a
+> concretar una pregunta y una primera prueba. Activa los especialistas necesarios
+> y muéstrame los resultados en el chat, con lo que se comprobó y lo que falta.
+> Elegiremos la salida que me sirva: un prototipo, una síntesis, un informe o un paper.
 
-Recorrido: **idea → pregunta → prueba mínima → decisión → investigación → salida
- elegida → revisión**. Los antecedentes se consultan cuando el método los necesita.
-El coordinador selecciona skills y especialistas; la persona decide la pregunta,
-los cambios de rumbo y el producto final. El agente conserva el estado para retomar.
-Anatomy ayuda a entender un mecanismo; una ilustración no demuestra su validez.
+También puedes pedir algo concreto: «Ayúdame a comparar estas explicaciones»,
+«Construye un prototipo para explorar este mecanismo» o «Revisa si mis conclusiones
+están respaldadas». El coordinador adapta el recorrido a lo que ya tienes:
+**idea → pregunta → prueba mínima → decisión → salida elegida → revisión**.
 
+Recibes los prototipos interactivos y las vistas previas de figuras y documentos
+en el chat; las fuentes quedan en el proyecto para reproducir el trabajo.
+Tú decides los cambios de rumbo y cuándo la entrega satisface tu objetivo.
 Consulta el [método y criterios de avance](.agents/skills/paper-orchestra/references/flujo-guiado.md).
-El ensayo completo de este flujo con participantes sigue pendiente.
 
-## Ver las diapositivas y simulaciones
+## Agentes y skills incluidos
 
-Abre una terminal en esta carpeta y ejecuta:
+Puedes usar estas mismas declaraciones y skills con el proveedor que elijas en
+Danil. Los roles no fijan modelo ni proveedor: heredan los permisos de tu tarea.
+Sus responsabilidades son instrucciones de trabajo; por ejemplo, el revisor
+no debe editar archivos, pero el manifiesto no impone un sandbox de solo lectura.
+Las herramientas disponibles y la autenticación dependen de tu cuenta.
 
-```sh
-python -m http.server 8765 --bind 127.0.0.1
-```
 
-Abre [la presentaci?n en tu navegador](http://127.0.0.1:8765/presentacion/entre-el-orden-y-el-caos.html). Avanza y retrocede con las flechas; al llegar a las p?ginas de Mandelbrot, aut?matas, pila de arena y bosque, podr?s usar las simulaciones interactivas. Para terminar, presiona Ctrl+C en la terminal. Si quieres que otras personas la vean en vivo, comparte tu pantalla; el enlace local solo funciona en tu computadora.
+Los **agentes** son especialistas con responsabilidades y límites. Las **skills**
+son los métodos que consultan para realizar el trabajo; no son servicios que se
+ejecuten solos ni garantizan que una herramienta esté instalada en tu cuenta.
 
-Tambi?n puedes abrir `presentacion/entre-el-orden-y-el-caos-estatica.pdf`: es una versi?n para compartir, sin animaciones ni simulaciones interactivas. Los cr?ditos de im?genes est?n en `presentacion/CREDITOS.md`.
+- **Seis agentes:** coordinador, bibliotecario, simulador, ilustrador, redactor y revisor.
+- **Cinco skills originales y catorce adicionales:** métodos de investigación,
+  búsqueda y citas, simulación reproducible, escritura, revisión y visualización;
+  también Anatomy, Remotion y Manim Slides para explicaciones y comunicación visual.
+- **Scripts y dos notebooks** con ejemplos de sistemas dinámicos y autómatas celulares.
+- **Una plantilla de paper en Typst** con una figura de ejemplo y marcadores «Tu turno».
+- **Una presentación de consulta opcional** con animaciones y cuatro simulaciones.
 
-## Kit de agentes y simulaciones
-
-El kit siguiente se copi? del CICY; sus simulaciones num?ricas y notebooks todav?a no se han probado en este repositorio.
-
-# Kit de laboratorio · Entre el orden y el caos
-
-Kit del taller «Entre el orden y el caos: investigación con agentes de IA en Danil». Con él montas
-tu propio laboratorio de investigación con agentes y escribes un paper corto: tú pones la pregunta y
-el criterio, los agentes buscan, programan, grafican y redactan el primer borrador, y otro agente
-revisa que cada afirmación tenga respaldo.
-
-Trae listo:
-
-- **Seis agentes** que se reparten el trabajo: `coordinador`, `bibliotecario`, `simulador`,
-  `ilustrador`, `redactor` y `revisor` (en `.agents/agents/`). El simulador también
-  prepara prototipos interactivos y vídeos cuando se piden.
-- **Cinco skills originales y catorce adicionales** con los métodos que siguen: verificar una referencia, hacer una simulación
-  reproducible, ajustar una ley de potencias, hacer una figura para el paper y escribir el paper en
-  Typst (en `skills/`), más revisión bibliográfica, escritura y figuras científicas,
-  Anatomy y guías de simulación, Remotion y [Manim Slides](.agents/skills/manim-slides/SKILL.md) (en `.agents/skills/`).
-- **Simulaciones** de dos temas de ejemplo: la aplicación logística (bifurcación, caos, Lyapunov,
-  constante de Feigenbaum) y los autómatas celulares (Reglas 30, 90 y 110, las 256 reglas, la pila
-  de arena y el incendio forestal, con leyes de potencias).
-- **Dos notebooks** para Google Colab.
-- **Una plantilla de paper** en Typst que ya compila, con una figura de ejemplo y marcadores
-  «Tu turno» donde va lo tuyo.
-
-Las reglas del laboratorio están en [`AGENTS.md`](AGENTS.md). Léelas: los agentes las siguen y tú
-también.
+El [catálogo de skills y fuentes](.agents/skills/paper-orchestra/references/fleet.md)
+explica los métodos y su procedencia. Las [reglas del laboratorio](AGENTS.md)
+fijan reproducibilidad, privacidad, verificación de citas y responsabilidades.
+Las herramientas de simulación, compilación y vídeo requieren su entorno;
+el agente debe comprobarlo antes de prometer una ejecución.
 
 ## Qué hay en cada carpeta
 
@@ -75,6 +81,9 @@ notebooks/             01_logistica_y_caos.ipynb y 02_automatas_celulares.ipynb 
 figuras/               figuras generadas (no se versionan: se regeneran)
 resultados/            números en JSON y CSV, con semillas y parámetros
 paper/                 main.typ, referencias.bib y figuras/ del paper
+prototipos/            fuentes de modelos explicativos y exploraciones interactivas
+trabajo/               encargo, decisiones y estado para retomar tu proyecto
+presentacion/          presentación de consulta y sus recursos originales
 requirements.txt       dependencias de Python
 ```
 
@@ -89,9 +98,20 @@ requirements.txt       dependencias de Python
 3. Crea una tarea sobre esa carpeta con el agente de IA que uses (Claude, Codex u otro). Danil
    lee los agentes de `.agents/agents/` y las reglas de `AGENTS.md`.
 4. Primera petición, para comprobar que todo está en su sitio:
-   > Lee `AGENTS.md` y dime qué agentes hay, qué hace cada uno y qué comando regenera las figuras.
+   > Muéstrame qué puedo hacer con este laboratorio y ayúdame a empezar con mi idea.
 
-Para correr las simulaciones en tu computadora necesitas Python 3.10 o posterior:
+**Preparación automática desde el primer mensaje.** El agente debe comprobar
+Typst y su plugin de Danil antes de cerrar la bienvenida, instalar lo que falte
+y activar el plugin en tu espacio, sin esperar a que pidas un paper. Te indica
+la versión y el resultado comprobado. Si el entorno bloquea una operación,
+te explica qué falta; una instrucción en el repositorio no sustituye los permisos
+de tu cuenta. El [procedimiento obligatorio](AGENTS.md#verificación-de-typst)
+está en las reglas del proyecto.
+
+Para correr las simulaciones en tu computadora necesitas Python 3.10 o posterior.
+Los siguientes comandos son los del kit; su ejecución numérica y la de los
+notebooks sigue pendiente de comprobar en este entorno. Si tu sistema solo
+reconoce `python3`, úsalo en lugar de `python`:
 
 ```sh
 python -m pip install -r requirements.txt
@@ -107,7 +127,7 @@ y qué quedó abierto.
 
 | Agente | Le pides | No hace |
 |---|---|---|
-| `@coordinador` | Organizar un documento, repartir tareas y registrar revisión | Redactar el paper o inventar evidencias |
+| `@coordinador` | Delimitar tu idea, elegir una primera prueba, repartir tareas y acompañar la salida elegida | Redactar el paper o inventar evidencias |
 | `@bibliotecario` | Buscar y verificar referencias; mantener `paper/referencias.bib` | Escribir el paper |
 | `@simulador` | Simulaciones, notebooks, prototipos, vídeos y números reproducibles | Escribir el paper o el `.bib` |
 | `@ilustrador` | Preparar figuras finales y esquemas conceptuales | Cambiar resultados para que encajen con una conclusión |
@@ -189,6 +209,25 @@ git clone https://github.com/danil-labs/agent-creator
 python agent-creator/scripts/validate_agent.py --root . --strict
 ```
 
+## Presentación de consulta (opcional)
+
+Puedes consultar *Entre el orden y el caos* para explorar los ejemplos incluidos.
+La versión actual usa archivos de `presentacion/entre-el-orden-y-el-caos_assets/`:
+conserva esa carpeta junto al HTML. Para abrirla, desde la raíz ejecuta:
+
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
+```
+
+Abre [la presentación en tu navegador](http://127.0.0.1:8765/presentacion/entre-el-orden-y-el-caos.html).
+Avanza y retrocede con las flechas. Las simulaciones de Mandelbrot, autómatas,
+pila de arena y bosque se activan al llegar a su diapositiva. Las animaciones
+se reproducen a 3×. Para detener el servidor, presiona Ctrl+C en la terminal.
+El enlace local solo funciona en tu computadora.
+
+También está la [versión PDF estática](presentacion/entre-el-orden-y-el-caos-estatica.pdf),
+sin animaciones ni simulaciones interactivas. Consulta los [créditos de imágenes](presentacion/CREDITOS.md).
+
 ## Referencias de los temas de ejemplo
 
 Verificadas, en [`paper/referencias.bib`](paper/referencias.bib): May (1976) *Nature* 261:459, la
@@ -197,7 +236,10 @@ Wiesenfeld (1987) *Phys. Rev. Lett.* 59:381, la pila de arena. El método de aju
 potencias es de Clauset, Shalizi y Newman (2009) *SIAM Review* 51:661; antes de citarlo en tu
 paper, pídele a `@bibliotecario` que lo verifique.
 
-## Licencia
+## Procedencia y licencia
+
+Los ejemplos y la presentación parten del material *Entre el orden y el caos*
+del CICY. Se conservan como recursos para explorar y desarrollar proyectos propios.
 
 El material propio del kit conserva la licencia MIT: ver [`LICENSE`](LICENSE).
 Las skills de terceros conservan sus licencias y avisos en cada carpeta:

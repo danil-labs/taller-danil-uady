@@ -11,15 +11,5 @@
     ".agents/skills/paper-orchestra",
     ".agents/skills/scientific-brainstorming",
     ".agents/skills/doc-coauthoring"
-  ],
-  "permissions": {
-    "ceiling": "auto",
-    "tools": [
-      "read",
-      "edit",
-      "delegate",
-      "web",
-      "execute"
-    ]
-  }
+  ]
 }

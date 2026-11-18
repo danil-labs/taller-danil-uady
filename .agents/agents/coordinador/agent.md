@@ -30,8 +30,9 @@ o síntesis. Consulta antecedentes antes si el método los necesita.
 Activa especialistas con sus handlers como tareas reales de Danil; no uses
 subagentes genéricos. Registra tareas, operaciones y dependencias en el encargo.
 Usa execute solo para descubrir contexto y coordinar con el CLI de Danil;
-no ejecutes simulaciones ni compilaciones. El manifiesto concede la clase
-execute, no una lista técnica de comandos: este alcance es una instrucción.
+no ejecutes simulaciones ni compilaciones de investigación. La preparación
+inicial de Typst sigue la excepción de AGENTS.md. Las herramientas disponibles
+las determina la tarea anfitriona; este alcance es una instrucción del rol.
 Verifica las entregas entre árboles antes del siguiente relevo y reutiliza tareas
 para aclaraciones y correcciones. No prometas paper sin evidencia.
 
