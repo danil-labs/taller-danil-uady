@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/danil-labs/agent-creator/v1/schema/agent.v1.json",
+  "specVersion": 1,
+  "id": "749b75a0-6fcd-4c62-8f54-21032d562276",
+  "scope": "repository",
+  "memory": {
+    "reach": "project",
+    "store": "local"
+  },
+  "skills": [
+    ".agents/skills/paper-orchestra",
+    ".agents/skills/scientific-brainstorming",
+    ".agents/skills/doc-coauthoring"
+  ],
+  "permissions": {
+    "ceiling": "auto",
+    "tools": [
+      "read",
+      "edit",
+      "delegate",
+      "web"
+    ]
+  }
+}

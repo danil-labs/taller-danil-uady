@@ -27,3 +27,7 @@ datos-privados/
 # Salidas del modo --rapido: solo para comprobar que todo corre
 *_rapido.json
 *_rapido.csv
+# Cachés y dependencias de prototipos/vídeos; las fuentes se conservan.
+node_modules/
+prototipos/**/.remotion/
+prototipos/**/out/
