@@ -19,8 +19,8 @@ typst compile --root paper paper/main.typ paper/main.pdf
 typst watch   --root paper paper/main.typ paper/main.pdf   # recompila al guardar
 ```
 
-En Terminus, Typst ya viene instalado. Si `typst` no está en el PATH, usa el ejecutable de
-Terminus o instálalo desde https://typst.app (también se puede subir la carpeta `paper/` a la
+En Danil, Typst ya viene instalado. Si `typst` no está en el PATH, usa el ejecutable de
+Danil o instálalo desde https://typst.app (también se puede subir la carpeta `paper/` a la
 web de Typst y compilar ahí). `--root paper` hace que las rutas de imágenes y del `.bib` sean
 relativas a `paper/`. El PDF no se versiona.
 

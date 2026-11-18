@@ -2,6 +2,25 @@
 
 Este repositorio re?ne la presentaci?n y el kit del taller ?Entre el orden y el caos? del CICY como base de trabajo para el taller de la UADY.
 
+## Empieza con tu proyecto
+
+Abre una tarea con el handler **coordinador** y pega:
+
+> Quiero investigar [mi tema]. Tengo [datos, notas o ninguna evidencia todavía].
+> Ayúdame a concretar una pregunta y una prueba pequeña. Guíame con el flujo del
+> taller y activa a los especialistas como tareas reales de Danil. Antes de
+> ampliar el estudio, muéstrame qué aprendimos y qué falta. Elegiremos después
+> si la salida será un prototipo, una síntesis, un informe o un paper.
+
+Recorrido: **idea → pregunta → prueba mínima → decisión → investigación → salida
+ elegida → revisión**. Los antecedentes se consultan cuando el método los necesita.
+El coordinador selecciona skills y especialistas; la persona decide la pregunta,
+los cambios de rumbo y el producto final. El agente conserva el estado para retomar.
+Anatomy ayuda a entender un mecanismo; una ilustración no demuestra su validez.
+
+Consulta el [método y criterios de avance](.agents/skills/paper-orchestra/references/flujo-guiado.md).
+El ensayo completo de este flujo con participantes sigue pendiente.
+
 ## Ver las diapositivas y simulaciones
 
 Abre una terminal en esta carpeta y ejecuta:
@@ -20,7 +39,7 @@ El kit siguiente se copi? del CICY; sus simulaciones num?ricas y notebooks todav
 
 # Kit de laboratorio · Entre el orden y el caos
 
-Kit del taller «Entre el orden y el caos: investigación con agentes de IA en Terminus». Con él montas
+Kit del taller «Entre el orden y el caos: investigación con agentes de IA en Danil». Con él montas
 tu propio laboratorio de investigación con agentes y escribes un paper corto: tú pones la pregunta y
 el criterio, los agentes buscan, programan, grafican y redactan el primer borrador, y otro agente
 revisa que cada afirmación tenga respaldo.
@@ -59,15 +78,15 @@ paper/                 main.typ, referencias.bib y figuras/ del paper
 requirements.txt       dependencias de Python
 ```
 
-## 1. Abrirlo en Terminus
+## 1. Abrirlo en Danil
 
 1. Clona el repositorio (o descárgalo como ZIP desde GitHub: **Code → Download ZIP**):
    ```sh
    git clone https://github.com/danil-labs/taller-danil-uady
    ```
    Si quieres guardar tu propio historial, haz un *fork* o crea un repositorio vacío tuyo y súbelo ahí.
-2. Abre Terminus y añade la carpeta del kit a tu espacio de trabajo.
-3. Crea una tarea sobre esa carpeta con el agente de IA que uses (Claude, Codex u otro). Terminus
+2. Abre Danil y añade la carpeta del kit a tu espacio de trabajo.
+3. Crea una tarea sobre esa carpeta con el agente de IA que uses (Claude, Codex u otro). Danil
    lee los agentes de `.agents/agents/` y las reglas de `AGENTS.md`.
 4. Primera petición, para comprobar que todo está en su sitio:
    > Lee `AGENTS.md` y dime qué agentes hay, qué hace cada uno y qué comando regenera las figuras.
@@ -81,7 +100,8 @@ python simulaciones/correr_todo.py --rapido     # comprueba que todo corre (~3 m
 
 ## 2. Trabajar con los agentes
 
-Cada agente tiene un trabajo y una frontera. Para pedirle algo, nómbralo con `@`. Los agentes se
+Cada agente tiene un trabajo y una frontera. Para encargar trabajo, abre una tarea con su handler o pide al coordinador que la active.
+Una mención `@nombre` identifica el rol, pero no crea una tarea. Los agentes se
 pasan el trabajo entre ellos con el mismo mecanismo, y cada relevo lleva qué se entrega, dónde está
 y qué quedó abierto.
 
@@ -108,7 +128,7 @@ Ejemplos de peticiones:
   `resultados/pila_de_arena.json`.»
 - «@revisor revisa la sección de resultados.»
 
-Un flujo completo de una hora, aproximadamente:
+Ejemplo de recorrido para una pregunta ya delimitada (duración por medir):
 
 1. **Pregunta** (tú): escoge algo pequeño y verificable. Ideas: ¿cambia δ con otro mapa? ¿qué
    reglas elementales son sensibles al ancho? ¿el corte del incendio crece con θ?
@@ -126,7 +146,7 @@ El paper está en `paper/main.typ`. Desde la raíz del kit:
 typst compile --root paper paper/main.typ paper/main.pdf
 ```
 
-Terminus trae Typst; si no lo tienes en la terminal, instálalo desde https://typst.app o sube la
+Danil trae Typst; si no lo tienes en la terminal, instálalo desde https://typst.app o sube la
 carpeta `paper/` a la web de Typst y compila ahí. También puedes pedírselo a `@redactor`. Los
 recuadros amarillos «Tu turno» marcan lo que falta: un paper terminado no tiene ninguno.
 
