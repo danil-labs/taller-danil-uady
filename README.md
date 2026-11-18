@@ -216,16 +216,24 @@ python agent-creator/scripts/validate_agent.py --root . --strict
 ## Presentación de consulta (opcional)
 
 *Entre el orden y el caos* se entrega como **un solo HTML autocontenido**:
-`presentacion/entre-el-orden-y-el-caos.html`. Abre el archivo generado con doble
-clic en tu navegador; no necesita servidor Python, conexión a internet ni una
-carpeta de recursos al lado. Puedes compartir ese archivo por separado.
+`presentacion/entre-el-orden-y-el-caos.html`. Abre ese archivo en el árbol de
+Danil y selecciona la vista previa HTML (el icono del ojo) para ver la presentación
+y pasar las diapositivas dentro del panel. Si lo tenías abierto antes de regenerarlo,
+cierra esa pestaña y vuelve a abrirlo para cargar la versión nueva.
+También funciona por separado en tu navegador; no necesita servidor Python,
+conexión a internet ni una carpeta de recursos al lado.
 
 Conserva 51 diapositivas, 47 videos originales a 3× y cuatro simulaciones:
 Mandelbrot, autómatas celulares, pila de arena y bosque con incendios. Avanza y
-retrocede con las flechas; la barra espaciadora pausa o reanuda un video. Las
+retrocede con las flechas; haz clic dentro de la presentación para darle el foco
+al teclado. La barra espaciadora pausa o reanuda un video. Las
 simulaciones se activan al llegar a su diapositiva y tienen sus propios controles.
-Se comprobó en Chrome 159, con una copia aislada abierta por `file://` y sin red.
-Otros navegadores y equipos de pocos recursos quedan sin comprobar.
+Se comprobó en Chrome 159 sin red, tanto por `file://` como dentro de un iframe
+con el envoltorio y las restricciones oficiales del visor de Danil. La prueba del
+visor cubre el arranque automático, los 47 videos a 3×, las flechas y las cuatro
+simulaciones, también con una comprobación breve en un panel de 820 × 760.
+No se ha automatizado la app Danil completa; otros motores de navegador, los
+límites de lectura de la app y equipos de pocos recursos quedan sin comprobar.
 
 **Si clonaste el repositorio**, genera el archivo una vez desde la raíz:
 
@@ -234,7 +242,7 @@ python3 simulaciones/empaquetar_presentacion.py
 ```
 
 El empaquetador solo usa la biblioteca estándar de Python. El HTML generado pesa
-122,1 MiB y queda fuera de Git porque supera el [límite de 100 MiB de GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github).
+122,0 MiB y queda fuera de Git porque supera el [límite de 100 MiB de GitHub](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github).
 Se versionan la [fuente editable](presentacion/entre-el-orden-y-el-caos.fuente.html),
 los recursos originales y el [empaquetador](simulaciones/empaquetar_presentacion.py).
 Edita la fuente y regenera el archivo; no edites a mano el HTML empaquetado.

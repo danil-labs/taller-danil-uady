@@ -8,18 +8,25 @@ Manim Slides, más las simulaciones en vivo) y sus archivos en
 `presentacion/entre-el-orden-y-el-caos.html`: un único archivo que se abre con doble clic
 (file://), sin red ni servidor.
 
-Qué hace, sin tocar los originales:
+El mismo archivo funciona también en el visor HTML de Danil, que lo pinta dentro de un
+<iframe sandbox="allow-scripts"> con una CSP sin red: script-src 'unsafe-inline' (sin data:),
+media-src/img-src/font-src data: (sin blob:). Qué hace, sin tocar los originales:
 
+- Declara `<meta name="harness-artefacto" content="web">`: el visor no le aplica su modo
+  documento ni su navegación propia; reveal.js navega.
 - Cada `<link rel="stylesheet">` local pasa a un `<style>` (las fuentes ya vienen en data: dentro
   de black.css).
-- Cada `<script src>` local pasa a un `<script>` en línea. Si el código contiene secuencias que
-  confunden al analizador HTML dentro de un <script> («<!--», «<script», «</script»), se incrusta
-  como `src="data:text/javascript;base64,…"`, byte a byte idéntico.
-- Cada video de `data-background-video` se guarda en base64 dentro de un
-  `<script type="application/octet-stream">`. Un pequeño script, que corre antes de
-  `Reveal.initialize`, lo convierte en Blob y escribe su `blob:` URL en `data-background-video`.
-  No se usan data: URL porque reveal.js separa ese atributo por comas y una data: URL lleva una.
+- Cada `<script src>` local pasa a un `<script>` en línea. «<!--», «<script» y «</script» se
+  escriben «\x3C!--»… (en notes.js están dentro de plantillas y de una expresión regular, donde
+  significan lo mismo), con el número exacto esperado por archivo.
+- Cada video va como `data:video/mp4;base64,…` en su propio `data-background-video`. reveal.js
+  separa ese atributo por comas; en la copia empaquetada se cambia exactamente una expresión para
+  que una data: URL vaya entera (falla si reveal.js cambia).
+- Todos los videos llevan `data-background-video-muted`, para que arranquen sin gesto del usuario
+  dentro del marco; antes se comprueba que ningún MP4 tiene pista de audio.
 - Los videos no se recodifican. Los que no se referencian no se incluyen.
+
+Prueba: `simulaciones/probar_presentacion.mjs` (file:// y, con --visor, el envoltorio oficial).
 
 Solo usa la biblioteca estándar (no importa `comun.py`, que carga matplotlib y numpy, porque aquí
 no hacen falta); fuerza UTF-8 en la consola por la misma razón que `comun.py`.
@@ -46,37 +53,46 @@ DIAPOSITIVAS = 51
 VIDEOS = 47
 SIMULACIONES = {"mandelbrot", "automatas", "arena", "bosque"}
 
+# El visor de Danil pinta el HTML en un iframe sandbox="allow-scripts" (origen opaco) con esta CSP
+# (packages/chat/src/sandbox.ts): script-src 'unsafe-inline' (sin data:), media-src data: (sin blob:),
+# img/font-src data:. Todo lo de abajo está hecho para caber en ella y, a la vez, abrir con file://.
 PELIGROSO_EN_SCRIPT = re.compile(r"<!--|<script|</script", re.IGNORECASE)
+# Cuántas secuencias peligrosas se espera escapar en cada script; si cambia la versión, se revisa.
+ESCAPES_ESPERADOS = {"reveal.js": 0, "notes.js": 3}
 
-DECODIFICADOR = """<script>
-/* Videos incrustados: base64 -> Blob -> blob: URL, antes de Reveal.initialize. */
-(function () {
-  "use strict";
-  var datos = {};
-  document.querySelectorAll('script[type="application/octet-stream"][data-video]').forEach(function (s) {
-    datos[s.getAttribute("data-video")] = s;
-  });
-  function bytes(b64) {
-    if (typeof Uint8Array.fromBase64 === "function") return Uint8Array.fromBase64(b64);
-    var bin = atob(b64), n = bin.length, u = new Uint8Array(n);
-    for (var i = 0; i < n; i++) u[i] = bin.charCodeAt(i);
-    return u;
-  }
-  var urls = {};
-  document.querySelectorAll("section[data-video-incrustado]").forEach(function (sec) {
-    var clave = sec.getAttribute("data-video-incrustado");
-    if (!urls[clave]) {
-      var s = datos[clave];
-      if (!s) { console.error("[video] falta " + clave); return; }
-      urls[clave] = URL.createObjectURL(new Blob([bytes(s.textContent.trim())], { type: "video/mp4" }));
-    }
-    sec.setAttribute("data-background-video", urls[clave]);
-  });
-  Object.keys(datos).forEach(function (k) { datos[k].remove(); });  /* libera el texto base64 */
-  window.__videosIncrustados = urls;
-})();
-</script>
-"""
+# reveal.js separa data-background-video por comas para admitir varias <source>, y una data: URL
+# lleva una coma tras «base64». Solo en la copia empaquetada: una data: URL va entera.
+REVEAL_ORIGINAL = "o.split(`,`).forEach(t=>{let n=document.createElement(`source`)"
+REVEAL_PARCHE = "(/^data:/.test(o.trim())?[o.trim()]:o.split(`,`)).forEach(t=>{let n=document.createElement(`source`)"
+
+# Le dice al visor que es una página web: no le aplica su modo «documento» ni su navegación de
+# diapositivas; reveal.js se encarga de todo.
+META_VISOR = '<meta name="harness-artefacto" content="web"/>'
+
+
+def pistas_mp4(datos):
+    """Tipos de pista (hdlr) de un MP4: 'vide', 'soun'… Recorre moov/trak/mdia/hdlr."""
+    tipos = []
+    def cajas(ini, fin):
+        i = ini
+        while i + 8 <= fin:
+            tam = int.from_bytes(datos[i:i + 4], "big"); tipo = datos[i + 4:i + 8]; cab = 8
+            if tam == 1:
+                tam = int.from_bytes(datos[i + 8:i + 16], "big"); cab = 16
+            elif tam == 0:
+                tam = fin - i
+            if tam < cab:
+                break
+            yield tipo, i + cab, i + tam
+            i += tam
+    def bajar(ini, fin):
+        for tipo, a, b in cajas(ini, fin):
+            if tipo in (b"moov", b"trak", b"mdia"):
+                bajar(a, b)
+            elif tipo == b"hdlr":
+                tipos.append(datos[a + 8:a + 12].decode("latin-1"))
+    bajar(0, len(datos))
+    return tipos
 
 
 def ruta_local(href):
@@ -92,12 +108,19 @@ def incrustar_css(m):
 
 
 def incrustar_js(m):
+    """Siempre en línea (la CSP del visor no admite script src=data:). «<!--», «<script» y
+    «</script» se escriben «\x3C!--»…: dentro de una cadena, una plantilla o una expresión regular
+    de JS, «\x3C» es «<», así que el código no cambia, y el analizador HTML ya no los ve."""
     ruta = ruta_local(m.group("src"))
-    js = ruta.read_bytes()
-    if PELIGROSO_EN_SCRIPT.search(js.decode("utf-8")):
-        b64 = base64.b64encode(js).decode("ascii")
-        return f'<script src="data:text/javascript;base64,{b64}"></script><!-- {ruta.name} -->'
-    return f"<script>/* {ruta.name} */\n{js.decode('utf-8')}\n</script>"
+    js = ruta.read_text(encoding="utf-8")
+    n = len(PELIGROSO_EN_SCRIPT.findall(js))
+    assert n == ESCAPES_ESPERADOS.get(ruta.name, 0), f"{ruta.name}: {n} secuencias que escapar"
+    js = PELIGROSO_EN_SCRIPT.sub(lambda x: "\\x3C" + x.group(0)[1:], js)
+    if ruta.name == "reveal.js":
+        assert js.count(REVEAL_ORIGINAL) == 1, "reveal.js cambió: revisa el parche de data-background-video"
+        js = js.replace(REVEAL_ORIGINAL, REVEAL_PARCHE)
+    assert not PELIGROSO_EN_SCRIPT.search(js)
+    return f"<script>/* {ruta.name} */\n{js}\n</script>"
 
 
 def fuera_de_comentarios(patron, funcion, html):
@@ -132,35 +155,36 @@ def main():
     html, n_js = fuera_de_comentarios(
         r'<script\s+src="(?P<src>[^"]+)"\s*>\s*</script>', incrustar_js, html)
 
-    # --- videos ---
+    # --- videos: data: URL en el propio atributo, sin recodificar ---
+    # Sin pista de audio, «muted» no cambia nada que se oiga y deja que el navegador los arranque
+    # sin un gesto del usuario, como hace falta dentro del iframe del visor.
     claves = {}
-    def marcar(m):
-        ruta = ruta_local(m.group(1))
-        clave = ruta.name
-        claves[clave] = ruta
-        return f'data-video-incrustado="{clave}"'
-    html = re.sub(r'data-background-video="([^"]+)"', marcar, html)
-
-    bloques = []
     total_bytes = 0
-    for clave, ruta in claves.items():
+    def incrustar_video(m):
+        nonlocal total_bytes
+        ruta = ruta_local(m.group(1))
         crudo = ruta.read_bytes()
-        total_bytes += len(crudo)
+        pistas = pistas_mp4(crudo)
+        assert pistas == ["vide"], f"{ruta.name}: pistas {pistas}; con audio, «muted» lo silenciaría"
+        if ruta.name not in claves:
+            total_bytes += len(crudo)
+        claves[ruta.name] = ruta
         b64 = base64.b64encode(crudo).decode("ascii")
-        bloques.append(f'<script type="application/octet-stream" data-video="{clave}">{b64}</script>')
-    registro = "<!-- videos incrustados (base64, sin recodificar) -->\n" + "\n".join(bloques) + "\n" + DECODIFICADOR
+        return f'data-background-video="data:video/mp4;base64,{b64}" data-video-origen="{ruta.name}"'
+    html = re.sub(r'data-background-video="([^"]+)"', incrustar_video, html)
+    html = re.sub(r'(<section\b[^>]*?) data-background-video-muted=""', r"\1", html)
+    html, n_mudos = re.subn(r"(<section\b[^>]*?)(data-background-video=)", r"\1data-background-video-muted \2", html)
+    assert n_mudos == VIDEOS
 
-    # El registro va justo antes del primer script de la página (reveal.js), que va antes de
-    # Reveal.initialize: así los <section> ya existen y el atributo está listo cuando reveal lo lee.
-    i = html.index("<script")
-    html = html[:i] + registro + html[i:]
-    assert html.rindex("Reveal.initialize({") > html.index("window.__videosIncrustados = urls;")
+    # --- el visor ---
+    html, n_meta = re.subn(r'(<meta charset="utf-8"\s*/?>)', r"\1" + META_VISOR, html, count=1)
+    assert n_meta == 1
 
     # --- procedencia y créditos dentro del propio archivo, que viaja solo ---
     creditos = CREDITOS.read_text(encoding="utf-8").replace("--", "—")
     cabecera = (
         "<!--\n"
-        "  Entre el orden y el caos · versión autocontenida (file://, sin red).\n"
+        "  Entre el orden y el caos · versión autocontenida: file:// sin red y visor HTML de Danil (CSP + sandbox).\n"
         "  GENERADO: no editar. Fuente: presentacion/entre-el-orden-y-el-caos.fuente.html\n"
         "  Comando: python simulaciones/empaquetar_presentacion.py\n"
         "  Exportada con Manim Slides; usa reveal.js (MIT, © Hakim El Hattab, licencia íntegra en su bloque).\n\n"
@@ -175,7 +199,9 @@ def main():
     assert not re.search(r'<(?:link|script|img|video|source|iframe)\b[^>]*\b(?:src|href)="(?!data:|\$\{)',
                          sin_comentarios), "queda un recurso externo"
     assert len(re.findall(r"<section\b", html)) == DIAPOSITIVAS
-    assert len(re.findall(r'data-video-incrustado="', html)) == VIDEOS
+    assert len(re.findall(r'data-background-video="data:video/mp4;base64,', html)) == VIDEOS
+    assert len(re.findall(r'<section\b[^>]*?data-background-video-muted data-background-video="data:', html)) == VIDEOS
+    assert "blob:" not in sin_comentarios and "<script src=" not in sin_comentarios
 
     tmp = SALIDA.with_suffix(".html.tmp")
     tmp.write_text(html, encoding="utf-8")
