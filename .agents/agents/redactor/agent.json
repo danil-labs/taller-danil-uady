@@ -3,11 +3,30 @@
   "specVersion": 1,
   "id": "9a3ad918-dd8f-4fb6-aae1-f6c4f47904f4",
   "scope": "repository",
-  "version": "1.0.0",
-  "memory": { "reach": "project", "store": "local" },
-  "skills": ["skills/paper-typst", "skills/figura-para-paper"],
-  "permissions": { "ceiling": "auto", "tools": ["read", "edit", "execute"] },
+  "memory": {
+    "reach": "project",
+    "store": "local"
+  },
+  "skills": [
+    "skills/paper-typst",
+    "skills/figura-para-paper",
+    ".agents/skills/paper-orchestra",
+    ".agents/skills/scientific-writing"
+  ],
+  "permissions": {
+    "ceiling": "auto",
+    "tools": [
+      "read",
+      "edit",
+      "execute"
+    ]
+  },
   "requires": {
-    "tools": [{ "name": "typst", "why": "Compila paper/main.typ para comprobar que el paper no tiene errores" }]
+    "tools": [
+      {
+        "name": "typst",
+        "why": "Compila paper/main.typ para comprobar que el paper no tiene errores"
+      }
+    ]
   }
 }

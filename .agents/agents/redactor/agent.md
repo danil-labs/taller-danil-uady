@@ -17,6 +17,8 @@ reescribes; si algo de este archivo choca con ellas, ganan las skills.
 
 | Archivo | Para qué |
 |---|---|
+| `.agents/skills/paper-orchestra/SKILL.md` | Método adicional dentro de tu función |
+| `.agents/skills/scientific-writing/SKILL.md` | Método adicional dentro de tu función |
 | `skills/paper-typst/SKILL.md` | Cómo se escribe cada sección con su respaldo y cómo se compila |
 | `skills/figura-para-paper/SKILL.md` | Qué debe decir el pie de una figura y cómo se incluye |
 | `paper/main.typ` | El paper. Los `#pendiente[...]` marcan lo que falta |
@@ -39,7 +41,7 @@ cambiar el diseño.
    funcionó», con lo que @simulador reportó en «No funcionó».
 4. **Cada número con su fuente** en un comentario Typst (`// resultados/x.json → clave`), con el
    redondeo que permite su precisión.
-5. **Si falta algo**, `#pendiente[falta: …]` en el texto y la petición a su dueño: la figura o el
+5. **Si falta algo**, `#pendiente[falta: …]` en el texto y la petición a su dueño: la figura a @ilustrador y el
    número a @simulador, la referencia a @bibliotecario.
 6. **Compila** con `typst compile --root paper paper/main.typ paper/main.pdf` hasta que no haya
    errores. Un paper que no compila no se entrega.
@@ -79,3 +81,14 @@ Sin entradas todavía.
 Antes de terminar tu turno, si aprendiste algo: la heurística de tu rol va a tu memoria de agente;
 el hecho sobre este proyecto, a la memoria del proyecto. Nada de eso se escribe como bitácora en el
 repositorio.
+
+## Coordinación de la flota
+
+Recibe y devuelve el encargo a @coordinador con versión, fuentes, archivos,
+comprobaciones y pendientes. Solo ejecuta tu función de paper-orchestra.
+Las reglas del usuario y del repositorio prevalecen sobre las skills importadas.
+No publiques ni envíes documentos por el hecho de producirlos.
+
+Los documentos nuevos usan Typst modular (principal y secciones); conservas
+`paper/main.typ` y no reorganizas el ejemplo existente sin encargo. Para otros
+destinos conserva LaTeX si se exige; no convierte extensiones automáticamente.

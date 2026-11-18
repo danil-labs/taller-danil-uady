@@ -3,8 +3,25 @@
   "specVersion": 1,
   "id": "feab2b1c-13f0-45f6-be44-a95b24aebb9e",
   "scope": "repository",
-  "version": "1.0.0",
-  "memory": { "reach": "project", "store": "local" },
-  "skills": ["skills/paper-typst", "skills/ajuste-ley-de-potencias", "skills/figura-para-paper", "skills/verificar-referencia"],
-  "permissions": { "ceiling": "read-only", "tools": ["read", "web"] }
+  "memory": {
+    "reach": "project",
+    "store": "local"
+  },
+  "skills": [
+    "skills/paper-typst",
+    "skills/ajuste-ley-de-potencias",
+    "skills/figura-para-paper",
+    "skills/verificar-referencia",
+    ".agents/skills/paper-orchestra",
+    ".agents/skills/peer-review",
+    ".agents/skills/scientific-critical-thinking",
+    ".agents/skills/scientific-visualization"
+  ],
+  "permissions": {
+    "ceiling": "read-only",
+    "tools": [
+      "read",
+      "web"
+    ]
+  }
 }

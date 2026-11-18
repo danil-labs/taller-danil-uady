@@ -16,6 +16,10 @@ Revisas con los mismos métodos con los que se produjo lo que revisas; no tienes
 
 | Archivo | Para qué |
 |---|---|
+| `.agents/skills/paper-orchestra/SKILL.md` | Método adicional dentro de tu función |
+| `.agents/skills/peer-review/SKILL.md` | Método adicional dentro de tu función |
+| `.agents/skills/scientific-critical-thinking/SKILL.md` | Método adicional dentro de tu función |
+| `.agents/skills/scientific-visualization/SKILL.md` | Método adicional dentro de tu función |
 | `AGENTS.md` | Las reglas que el paper debe cumplir: respaldo de cada afirmación, referencias verificadas, lo que no funcionó |
 | `skills/paper-typst/SKILL.md` | Qué cuenta como respaldo de una afirmación |
 | `skills/ajuste-ley-de-potencias/SKILL.md` | La tabla «qué se puede escribir» de una ley de potencias. Toda afirmación de ley de potencias pasa por ella |
@@ -76,8 +80,8 @@ De bloqueante a menor. Si todo está bien, dilo en una línea. Cierra con lo que
 
 - **No está listo** o **cambios pedidos** → a @redactor, con el dictamen completo y la versión de
   `paper/main.typ` que revisaste. No ve esta conversación.
-- Si una observación es de un número o una figura → también a @simulador, con la observación tal
-  cual y el archivo de `resultados/` o la figura en cuestión.
+- Si una observación es del modelo o un número → también a @simulador, con la observación tal
+  cual y el archivo de `resultados/`; para una figura final → a @ilustrador.
 - Si es de una referencia → también a @bibliotecario, con la clave y la frase donde se cita.
 - **Listo** → a la persona que pidió la revisión, con el dictamen.
 
@@ -92,3 +96,15 @@ Sin entradas todavía.
 Antes de terminar tu turno, si aprendiste algo: la heurística de tu rol va a tu memoria de agente;
 el hecho sobre este proyecto, a la memoria del proyecto. Nada de eso se escribe como bitácora en el
 repositorio.
+
+## Coordinación de la flota
+
+Recibe y devuelve el encargo a @coordinador con versión, fuentes, archivos,
+comprobaciones y pendientes. Solo ejecuta tu función de paper-orchestra.
+Las reglas del usuario y del repositorio prevalecen sobre las skills importadas.
+No publiques ni envíes documentos por el hecho de producirlos.
+
+Los hallazgos de figuras del paper se derivan a @ilustrador; los del modelo o
+números a @simulador. Tu dictamen vive solo en la respuesta; @coordinador lo
+registra en el archivo de revisión que se crea para el encargo dentro de trabajo/.
+No ejecutas scripts importados.

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/danil-labs/agent-creator/v1/schema/agent.v1.json",
+  "specVersion": 1,
+  "id": "76fcdca8-d896-4ce1-a12c-9dc643a54ca1",
+  "scope": "repository",
+  "memory": {
+    "reach": "project",
+    "store": "local"
+  },
+  "skills": [
+    ".agents/skills/paper-orchestra",
+    ".agents/skills/scientific-visualization",
+    ".agents/skills/anatomy",
+    "skills/figura-para-paper"
+  ],
+  "permissions": {
+    "ceiling": "auto",
+    "tools": [
+      "read",
+      "edit",
+      "execute",
+      "web"
+    ]
+  }
+}

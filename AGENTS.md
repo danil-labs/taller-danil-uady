@@ -64,23 +64,40 @@ Los notebooks de `notebooks/` corren de principio a fin en Google Colab o en loc
 | `figuras/` | Figuras generadas por los scripts | @simulador | no (se regeneran) |
 | `resultados/` | Números en JSON/CSV, con semillas y parámetros | @simulador | sí |
 | `paper/main.typ` | El paper | @redactor | sí |
-| `paper/figuras/` | Copias de las figuras que usa el paper y su `PROCEDENCIA.md` | @simulador | sí |
+| `paper/figuras/` | Figuras finales y su `PROCEDENCIA.md`, a partir de datos o prototipos | @ilustrador | sí |
 | `paper/referencias.bib` | Referencias verificadas | @bibliotecario | sí |
 | `skills/` | Los métodos que comparten los agentes | la persona | sí |
 | `.agents/agents/` | Los agentes | la persona | sí |
+| `.agents/skills/` | Skills adicionales con licencia y procedencia | la persona | sí |
+| `prototipos/` | Modelos explicativos, prototipos interactivos y vídeos | @simulador | fuentes sí; cachés no |
+| `trabajo/` | Encargo, esquema, afirmaciones y revisión; fuentes y figuras por sus dueños | @coordinador, salvo fuentes/figuras | sí, sin datos privados |
 | PDF del paper, entornos, cachés | Se regeneran | — | no |
 
 ## Agentes
 
 | Agente | Qué hace | Techo | Skills |
 |---|---|---|---|
-| `bibliotecario` | Busca, verifica y mantiene `paper/referencias.bib` | edita y usa la web | `verificar-referencia` |
-| `simulador` | Escribe y corre simulaciones y notebooks; entrega figuras y números | edita y ejecuta | `simulacion-reproducible`, `ajuste-ley-de-potencias`, `figura-para-paper` |
-| `redactor` | Escribe y compila el paper con lo que hay en el repositorio | edita y ejecuta | `paper-typst`, `figura-para-paper` |
-| `revisor` | Contrasta cada afirmación del paper con su respaldo y dictamina | solo lectura (y web, para resolver DOI) | `paper-typst`, `ajuste-ley-de-potencias`, `figura-para-paper`, `verificar-referencia`, como criterio de revisión |
+| `coordinador` | Delimita el encargo, esquema, reparto y revisión; no escribe el manuscrito | edita y delega; sin shell | `paper-orchestra`, `scientific-brainstorming`, `doc-coauthoring` |
+| `bibliotecario` | Busca, verifica y mantiene `paper/referencias.bib` | edita y usa la web | `verificar-referencia`, `literature-review`, `citation-management`, `paper-orchestra` |
+| `simulador` | Modelos, notebooks, resultados, prototipos y vídeos solicitados | edita y ejecuta | métodos originales, `anatomy`, `frontend-design`, `simulation-prototyping`, `remotion-video`, `paper-orchestra` |
+| `ilustrador` | Prepara figuras finales estáticas y conceptuales con procedencia | edita y ejecuta | `figura-para-paper`, `scientific-visualization`, `anatomy`, `paper-orchestra` |
+| `redactor` | Escribe y compila el paper; Typst principal, LaTeX cuando se requiera | edita y ejecuta | `paper-typst`, `figura-para-paper`, `scientific-writing`, `paper-orchestra` |
+| `revisor` | Contrasta afirmaciones y emite dictamen en la respuesta | solo lectura y web; sin shell | métodos originales, `peer-review`, `scientific-critical-thinking`, `scientific-visualization`, `paper-orchestra` |
 
 Los agentes siguen la especificación v1 de agent-creator
 (https://github.com/danil-labs/agent-creator). Sus flujos y relevos están en cada
 `.agents/agents/<nombre>/agent.md`; el flujo habitual es
-simulador y bibliotecario → redactor → revisor → de vuelta al dueño de cada observación.
+coordinador → simulador y bibliotecario en paralelo → ilustrador → redactor →
+revisor → de vuelta al dueño de cada observación, con registro del coordinador.
 El paper lo da por terminado la persona, no un agente.
+
+La ampliación conserva las skills originales de `skills/`. Las nuevas viven en
+`.agents/skills/`; sus recomendaciones opcionales no amplían permisos ni sustituyen
+las reglas del kit. El simulador entrega datos y gráficos de trabajo en `figuras/`;
+el ilustrador prepara `paper/figuras/` y usa `simulaciones/copiar_al_paper.py` para
+copias numéricas. El redactor conserva el principal existente; en documentos
+nuevos separa principal y secciones. No se publica ni se envía un documento por
+crear un borrador. Remotion requiere su entorno cuando se pida vídeo; no se
+instala automáticamente al leer una skill.
+
+[Catálogo de skills y fuentes](.agents/skills/paper-orchestra/references/fleet.md).

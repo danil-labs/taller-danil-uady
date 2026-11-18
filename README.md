@@ -27,11 +27,13 @@ revisa que cada afirmación tenga respaldo.
 
 Trae listo:
 
-- **Cuatro agentes** que se reparten el trabajo sin pisarse: `bibliotecario`, `simulador`,
-  `redactor` y `revisor` (en `.agents/agents/`).
-- **Cinco skills** con los métodos que siguen: verificar una referencia, hacer una simulación
+- **Seis agentes** que se reparten el trabajo: `coordinador`, `bibliotecario`, `simulador`,
+  `ilustrador`, `redactor` y `revisor` (en `.agents/agents/`). El simulador también
+  prepara prototipos interactivos y vídeos cuando se piden.
+- **Cinco skills originales y trece adicionales** con los métodos que siguen: verificar una referencia, hacer una simulación
   reproducible, ajustar una ley de potencias, hacer una figura para el paper y escribir el paper en
-  Typst (en `skills/`).
+  Typst (en `skills/`), más revisión bibliográfica, escritura y figuras científicas,
+  Anatomy y guías de simulación y Remotion (en `.agents/skills/`).
 - **Simulaciones** de dos temas de ejemplo: la aplicación logística (bifurcación, caos, Lyapunov,
   constante de Feigenbaum) y los autómatas celulares (Reglas 30, 90 y 110, las 256 reglas, la pila
   de arena y el incendio forestal, con leyes de potencias).
@@ -46,7 +48,8 @@ también.
 
 ```
 AGENTS.md              las reglas del laboratorio y quién es dueño de qué
-.agents/agents/        los cuatro agentes (formato agent-creator v1)
+.agents/agents/        los seis agentes (formato agent-creator v1)
+.agents/skills/        skills adicionales; licencia, fuente y adaptación en cada carpeta
 skills/                los métodos que usan los agentes
 simulaciones/          scripts reproducibles; cada uno escribe en figuras/ y resultados/
 notebooks/             01_logistica_y_caos.ipynb y 02_automatas_celulares.ipynb (para Colab)
@@ -84,8 +87,10 @@ y qué quedó abierto.
 
 | Agente | Le pides | No hace |
 |---|---|---|
+| `@coordinador` | Organizar un documento, repartir tareas y registrar revisión | Redactar el paper o inventar evidencias |
 | `@bibliotecario` | Buscar y verificar referencias; mantener `paper/referencias.bib` | Escribir el paper |
-| `@simulador` | Correr y escribir simulaciones y notebooks; figuras y números | Escribir el paper o el `.bib` |
+| `@simulador` | Simulaciones, notebooks, prototipos, vídeos y números reproducibles | Escribir el paper o el `.bib` |
+| `@ilustrador` | Preparar figuras finales y esquemas conceptuales | Cambiar resultados para que encajen con una conclusión |
 | `@redactor` | Escribir y compilar secciones del paper | Inventar números o citas |
 | `@revisor` | Revisar el paper contra figuras, datos y referencias | Corregir nada: solo lee |
 
@@ -93,7 +98,9 @@ Ejemplos de peticiones:
 
 - «@bibliotecario busca y verifica 5 referencias sobre criticalidad autoorganizada en la pila de
   arena, para sostener la primera frase de la introducción.»
-- «@simulador corre la logística y genera la figura de bifurcación; llévala al paper.»
+- «@simulador corre la logística y entrega la figura de bifurcación a @ilustrador para prepararla para el paper.»
+- «@coordinador organiza un paper en Typst con estos resultados y fuentes; reparte la bibliografía, figuras, texto y revisión.»
+- «@simulador prepara un prototipo Anatomy y un vídeo explicativo con Remotion; distingue modelo y resultados observados.»
 - «@simulador corre la pila de arena con L = 32, 64 y 128 y dime si se puede afirmar una ley de
   potencias.»
 - «@simulador repite el barrido de las 256 reglas con ancho 257 y dime qué cambia.»
@@ -172,4 +179,9 @@ paper, pídele a `@bibliotecario` que lo verifique.
 
 ## Licencia
 
-MIT: puedes usar, copiar y modificar este kit citando su origen. Ver [`LICENSE`](LICENSE).
+El material propio del kit conserva la licencia MIT: ver [`LICENSE`](LICENSE).
+Las skills de terceros conservan sus licencias y avisos en cada carpeta:
+K-Dense y Anatomy usan MIT; las skills de Anthropic usan Apache-2.0.
+El [catálogo de skills](.agents/skills/paper-orchestra/references/fleet.md)
+enlaza sus fuentes y versiones. La guía de Remotion es local y no redistribuye
+el pack oficial sin licencia declarada.
