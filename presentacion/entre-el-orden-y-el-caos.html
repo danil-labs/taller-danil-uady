@@ -1212,7 +1212,7 @@ else window.addEventListener("load", vivoIniciar);
 <script>
 // Acelera las animaciones sin alterar las simulaciones interactivas.
 (function () {
-  const velocidad = 1.75;
+  const velocidad = 3;
   document.addEventListener("play", function (evento) {
     const video = evento.target;
     if (video instanceof HTMLVideoElement && video.closest(".slide-background")) {

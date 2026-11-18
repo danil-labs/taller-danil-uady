@@ -66,7 +66,7 @@ inicia un segmento en bucle. HTML usa RevealJS; PDF conserva imágenes estática
 ## Aplicación a esta presentación
 
 - Usa `presentacion/entre-el-orden-y-el-caos.html` como ejemplo visual: fondo oscuro,
-  desarrollo progresivo, animaciones a 1.75× y marca Danil. Conserva las rutas de
+  desarrollo progresivo, animaciones a 3× y marca Danil. Conserva las rutas de
   `entre-el-orden-y-el-caos_assets/` y los créditos de imágenes.
 - Aquí se conserva la exportación, no sus escenas Python originales. Antes de
   regenerarla, recupera esas fuentes; reconvertir puede perder cambios del HTML.
